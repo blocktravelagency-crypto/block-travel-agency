@@ -1,90 +1,209 @@
-# CLAUDE.md — BlockTravel Hoteles (Proyecto P1)
+# CLAUDE.md — BlockTravelAgency.com
+## Cerebro Maestro del Proyecto | Leer SIEMPRE al iniciar sesión
 
-## Contexto del Proyecto
+---
 
-**Nombre:** BlockTravel Hoteles — Sistema de Captación y Conversión para Eventos Hoteleros
-**Descripción:** Plataforma de marketing digital automatizada para captar leads y convertir reservas de eventos hoteleros (bodas, convenciones, retiros corporativos) mediante landings optimizadas, campañas de Meta Ads, y un pipeline de automatización con n8n.
+## 1. IDENTIDAD DEL PROYECTO
 
-**Estado actual:** En desarrollo activo — Fase 1 (Infraestructura y primer evento)
+**Nombre:** BlockTravelAgency.com
+**Descripción:** Agencia de viajes digital especializada en eventos Web3, Crypto y Fintech.
+**Modelo de negocio:** Validación de demanda ANTES de contratar inventario hotelero.
+**Propietario:** IBott Studio
+**Repo GitHub:** https://github.com/blocktravelagency-crypto/block-travel-agency
 
-## Stack Tecnológico
+---
 
-- **Frontend/Landings:** HTML/CSS/JS estático, desplegado en Hostinger
-- **Automatización:** n8n (self-hosted en EasyPanel) — https://agencia-n8n.3a3rfo.easypanel.host
-- **Ads:** Meta Ads API (Facebook/Instagram)
-- **Tracking:** Meta Pixel, Google Sheets como CRM temporal
-- **Pagos:** Stripe (Fase 2)
-- **Email:** Resend API
-- **IA:** Claude API (Anthropic), Gemini API (Google)
-- **SEO/Performance:** PageSpeed Insights API
-- **Storage:** Google Drive para assets
+## 2. RUTAS EXACTAS DEL PROYECTO
 
-## APIs y Servicios Externos
+**Raíz local P1 (Hoteles):**
+C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\
 
-| Servicio | Variable de Entorno | Estado |
-|---|---|---|
-| Meta Ads | `META_ACCESS_TOKEN`, `META_AD_ACCOUNT_ID`, `META_PIXEL_ID` | Activo |
-| Google Sheets | `GOOGLE_SHEETS_ID` | Activo |
-| Google Drive | `GOOGLE_DRIVE_FOLDER_ID` | Activo |
-| Resend | `RESEND_API_KEY` | Activo |
-| Stripe | `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` | Fase 2 — INACTIVO |
-| n8n | `N8N_HOST`, `N8N_API_KEY` | Activo |
-| Anthropic | `ANTHROPIC_API_KEY` | Activo |
-| Gemini | `GEMINI_API_KEY` | Activo |
-| PageSpeed | `PAGESPEED_API_KEY` | Activo |
+**Raíz local P2 (Tours — CONGELADO):**
+C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\TOURS\
 
-## Agentes del Sistema
+**Archivos clave:**
+- CLAUDE.md maestro: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\CLAUDE.md
+- Variables de entorno: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\.env
+- Estado del proyecto: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\docs\PROJECT_STATUS.md
+- Protocolo agentes: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\docs\AGENTS_PROTOCOL.md
+- Istanbul landing: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\proyecto-1-eventos\istanbul\landing\
+- Istanbul ads: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\proyecto-1-eventos\istanbul\ads\
+- Istanbul data: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\proyecto-1-eventos\istanbul\data\
+- Consensus landing: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\proyecto-1-eventos\consensus\landing\
+- Consensus ads: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\proyecto-1-eventos\consensus\ads\
+- Consensus data: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\proyecto-1-eventos\consensus\data\
 
-El proyecto opera con 7 agentes especializados que trabajan de forma coordinada:
+---
 
-1. **Líder** — Orquestador general, toma decisiones de prioridad y asigna tareas
-2. **Marketing Agent** — Estrategia de campañas, copy, segmentación de audiencias
-3. **Landing Builder** — Construcción y optimización de landing pages
-4. **Leads Agent** — Captura, calificación y nurturing de leads
-5. **Pricing Agent** — Estrategia de precios, paquetes y ofertas (Fase 2)
-6. **SEO Agent** — Optimización on-page, performance, Core Web Vitals
-7. **Infraestructura Agent** — Deploy, monitoreo, configuración de servicios
+## 3. PROYECTOS ACTIVOS
 
-## Estructura del Proyecto
+### P1 — Validación de Eventos (ACTIVO)
+Testear demanda real antes de contratar inventario.
+Funnel: Landing online → Meta Ads → Leads → Si valida → Contratar habitaciones → Vender con Stripe
 
-```
-Hoteles/
-├── docs/                      # Documentación del proyecto
-├── proyecto-1-eventos/        # P1: Eventos hoteleros (ACTIVO)
-│   ├── istanbul/              # Evento Istanbul
-│   └── consensus/             # Evento Consensus
-├── proyecto-2-tours/          # P2: Tours (CONGELADO)
-├── agentes/                   # System prompts de cada agente
-└── infrastructure/            # Configuración de infraestructura
-```
+**Eventos:**
+| Evento | Ciudad | Fecha | Estado |
+|--------|--------|-------|--------|
+| Istanbul Blockchain Week | Istanbul, Turquía | Mayo 2025 | Campaña 1 — PRIORIDAD |
+| Consensus Miami | Miami, EEUU | Mayo/Junio 2025 | Campaña 2 — Paralela |
 
-## Reglas de Trabajo
+**KPI de validación:**
+- CPL < €20
+- 10+ leads en 7 días
+- PageSpeed mobile > 85
+- Tasa conversión landing > 2%
 
-1. **NO hardcodear credenciales** — Toda credencial va en `.env`, nunca en código
-2. **Un evento = una carpeta** — Cada evento tiene su propia carpeta con landing/, ads/ y data/
-3. **Documentar decisiones** — Toda decisión técnica o de negocio va en `docs/DECISIONS.md`
-4. **Agentes siguen protocolo** — Ver `docs/AGENTS_PROTOCOL.md` antes de modificar cualquier agente
-5. **Commits descriptivos** — Formato: `tipo(scope): descripción` (feat, fix, docs, refactor)
-6. **No tocar P2** — El proyecto de Tours está CONGELADO hasta validar P1
-7. **Landings primero** — Prioridad es tener landings funcionales antes de activar ads
-8. **Datos en Sheets** — Google Sheets es el CRM temporal hasta migrar a algo más robusto
+**Presupuesto por campaña:** €200
+- Fase aprendizaje: €3/día (días 1-7)
+- Fase validación: €15-20/día (días 4-10)
+- Reserva ajustes: ~€51
+- Dominios (x2): ~€20
 
-## KPIs Objetivo
+**Reglas de decisión Meta Ads:**
+- CPL < €15 + leads > 10 en 7 días → Escalar: doblar presupuesto + activar Stripe + Google Ads
+- CPL €15-20 + leads 5-10 → Optimizar creativos, dar 7 días más
+- CPL > €20 por 5-7 días consecutivos → Pausar, revisar landing y creativos
+- 0 leads en 5 días → Stop inmediato, revisar propuesta de valor
 
-- **CPL (Costo por Lead):** < $5 USD
-- **Tasa de conversión landing:** > 8%
-- **PageSpeed Score:** > 90 (mobile)
-- **Tiempo de carga:** < 3s
-- **Tasa de apertura emails:** > 25%
+### P2 — Tours Ticket Alto (CONGELADO)
+⏸ CONGELADO hasta que P1 registre sus primeros 10 leads validados.
+Ticket objetivo: USD 2.000-8.000 por persona.
 
-## Bloqueantes Pendientes
+---
 
-- [ ] Configurar Meta Pixel en landings
-- [ ] Validar acceso a Meta Ads API con token de producción
-- [ ] Definir paquetes y precios finales para Istanbul
-- [ ] Configurar workflows de n8n para captura de leads
-- [ ] Crear plantillas de email en Resend
+## 4. STACK TECNOLÓGICO
 
-## Próximo Paso Inmediato
+### Herramientas de construcción
+| Herramienta | Uso |
+|-------------|-----|
+| Claude Code (Plan Max) | Construcción de landings, agentes, workflows |
+| Gemini | Research, creativos, buyer persona |
+| Antigravity | Uso simultáneo Claude + Gemini |
+| n8n (Hostinger) | Automatización: leads, emails, backups |
+| GitHub | Control de versiones |
+| Hostinger | Hosting de landings y n8n |
+| Google Drive | Backup secundario diario |
 
-Completar la landing page del evento Istanbul con formulario de captura de leads conectado a Google Sheets vía n8n.
+### APIs confirmadas
+| API | Rol | Variable de entorno |
+|-----|-----|---------------------|
+| Meta Marketing API | Campañas Lead Generation | META_ACCESS_TOKEN, META_AD_ACCOUNT_ID, META_PIXEL_ID |
+| Google Sheets API | CRM de leads | GOOGLE_SHEETS_ID |
+| Google Drive API | Backups automáticos diarios | GOOGLE_DRIVE_FOLDER_ID |
+| Resend API | Emails de confirmación a leads | RESEND_API_KEY |
+| Stripe API | Pagos — FASE 2 INACTIVO | STRIPE_SECRET_KEY, STRIPE_PUBLISHABLE_KEY |
+| PageSpeed Insights API | Auditoría técnica de landings | PAGESPEED_API_KEY |
+| n8n REST API | Construcción programática de workflows | N8N_API_KEY |
+| Claude API | Cerebro de agentes | ANTHROPIC_API_KEY |
+| Gemini API | Research y análisis | GEMINI_API_KEY |
+
+**APIs descartadas:**
+| API | Motivo | Sustituto |
+|-----|--------|-----------|
+| Veturis API | No prioritaria en Fase 1 | Consulta manual Booking/Expedia |
+| WhatsApp Business API | Costo y complejidad innecesarios | Descartado — sin sustituto |
+| Telegram Bot API | Descartado del proyecto | Descartado — sin sustituto |
+| NotebookLM API | Solo Enterprise | System prompt exportado de Gemini |
+
+### MCP Server
+- **@makafeli/n8n-workflow-builder** — Construye y activa workflows en n8n desde Claude Code sin tocar la UI
+- Instalación: npx @makafeli/n8n-workflow-builder
+- N8N_HOST: https://agencia-n8n.3a3rfo.easypanel.host
+- Operaciones: create_workflow, activate_workflow, update_workflow, deactivate_workflow, create_workflow_and_activate
+
+---
+
+## 5. ARQUITECTURA DE AGENTES
+
+Punto de entrada único: **Agente 0 (Líder)**. Ningún agente especializado se activa directamente.
+
+### Orden de dependencias (NO saltear)
+Pricing Agent → Marketing Agent → Landing Builder → Leads Agent → Campaña live
+
+### Agentes
+| # | Agente | Responsabilidad | Skills asignadas |
+|---|--------|-----------------|-----------------|
+| 0 | Líder / Orchestrator | Punto de entrada único. Recibe, analiza, delega | find-skills, n8n-mcp-tools-expert, n8n-workflow-patterns |
+| 1 | Marketing Intelligence | Copy, estructura Meta Ads, creativos. Modelo Andromeda/GEM | paid-ads, ad-creative, copywriting, copy-editing, one-page-marketing, analytics-tracking |
+| 2 | Landing Builder | Construye y deploya landings HTML/CSS/JS con Pixel y formulario | landing-page-design, landing-page-copywriter, frontend-design, page-cro, email-design |
+| 3 | Leads & CRM | Procesa leads: Sheets + email confirmación + alerta de escala | apify-lead-generation, lead-magnets, gws-sheets, email-sequence, n8n-workflow-patterns |
+| 4 | Pricing & Research | Precio de mercado + margen 15-25% + precio publicable | travel-planner, seo-geo, find-skills |
+| 5 | SEO & Contenido | Auditoría técnica post-deploy y semanal | seo-audit, ai-seo, seo-geo, programmatic-seo, seo-content-brief, copywriting |
+| 6 | Infraestructura & Backup | n8n via MCP, backups Drive, git commit diario | stripe-best-practices, n8n-mcp-tools-expert, n8n-workflow-patterns |
+
+### Manejo de errores (todos los agentes)
+- Fallo de API → reintentar 3 veces automáticamente
+- Si persiste → escalar al Agente Líder con contexto completo del fallo
+- Acciones irreversibles (publicar campaña, activar Stripe, gastar presupuesto) → confirmación explícita de IBott antes de ejecutar
+
+---
+
+## 6. SKILLS INSTALADAS
+
+| Skill | Fuente | Agente asignado |
+|-------|--------|-----------------|
+| paid-ads | coreyhaines31/marketingskills | Marketing Intelligence |
+| ad-creative | coreyhaines31/marketingskills | Marketing Intelligence |
+| copywriting | coreyhaines31/marketingskills | Marketing Intelligence / SEO |
+| copy-editing | coreyhaines31/marketingskills | Marketing Intelligence |
+| one-page-marketing | wondelai/skills | Marketing Intelligence |
+| analytics-tracking | coreyhaines31/marketingskills | Marketing Intelligence |
+| landing-page-design | inferen-sh/skills | Landing Builder |
+| landing-page-copywriter | onewave-ai/claude-skills | Landing Builder |
+| frontend-design | anthropics/skills | Landing Builder |
+| page-cro | coreyhaines31/marketingskills | Landing Builder |
+| email-design | inferen-sh/skills | Landing Builder |
+| apify-lead-generation | apify/agent-skills | Leads & CRM |
+| lead-magnets | coreyhaines31/marketingskills | Leads & CRM |
+| gws-sheets | googleworkspace/cli | Leads & CRM |
+| email-sequence | coreyhaines31/marketingskills | Leads & CRM |
+| n8n-workflow-patterns | czlonkowski/n8n-skills | Leads & CRM / Infraestructura |
+| n8n-mcp-tools-expert | czlonkowski/n8n-skills | Infraestructura |
+| travel-planner | ailabs-393/ai-labs-claude-skills | Pricing & Research |
+| seo-audit | coreyhaines31/marketingskills | SEO & Contenido |
+| seo-geo | resciencelab/opc-skills | SEO & Contenido |
+| programmatic-seo | coreyhaines31/marketingskills | SEO & Contenido |
+| ai-seo | coreyhaines31/marketingskills | SEO & Contenido |
+| seo-content-brief | inferen-sh/skills | SEO & Contenido |
+| stripe-best-practices | stripe/ai | Infraestructura |
+| find-skills | vercel-labs/skills | Sistema |
+
+---
+
+## 7. REGLAS DE TRABAJO
+
+1. **Un paso a la vez** — nunca avanzar al siguiente sin confirmar que el anterior está completo y funcionando
+2. **Antes de escribir código** — confirmar exactamente qué se va a hacer
+3. **Cada sesión termina con** — git add + commit + push al repo blocktravelagency-crypto/block-travel-agency
+4. **Nunca hardcodear credenciales** — todo en variables de entorno en el archivo .env
+5. **Si falta información** — parar y preguntar, nunca asumir
+6. **Ser crítico** — si algo del plan está mal planteado, decirlo antes de ejecutar
+7. **Ante fallos de API** — reintentar 3 veces automáticamente, si persiste escalar para decisión conjunta
+8. **Acciones irreversibles** — publicar campaña, activar Stripe, gastar presupuesto requieren confirmación explícita de IBott antes de ejecutar
+9. **Rutas exactas siempre** — nunca usar rutas relativas en los prompts, siempre la ruta completa
+
+---
+
+## 8. BLOQUEANTES PENDIENTES (al 31/03/2026)
+
+| # | Bloqueante | Acción requerida | Quién |
+|---|-----------|------------------|-------|
+| 1 | Precio base Istanbul | Consultar Booking/Expedia para el periodo del evento y confirmar rango publicable | IBott + Pricing Agent |
+| 2 | Cuenta Meta Business Manager | Crear cuenta y verificar (puede tomar 24-48h) | IBott (manual) |
+| 3 | Dominios registrados | istanbulblockchaintravel.com + consensusmiamitravel.com (~€10 c/u) | IBott (manual) |
+| 4 | N8N_API_KEY | Generar en n8n UI → Settings → API → Create API Key | IBott (manual) |
+
+---
+
+## 9. ESTADO ACTUAL DEL PROYECTO
+✅ Paso 1 — Estructura de carpetas y archivos base creada
+✅ Paso 2 — Repo GitHub inicializado: blocktravelagency-crypto/block-travel-agency
+⬜ Paso 3 — CLAUDE.md maestro definitivo (EN CURSO)
+⬜ Paso 4 — System prompts definitivos de cada agente
+⬜ Paso 5 — Workflows n8n via MCP
+⬜ Paso 6 — Landing Istanbul
+⬜ Paso 7 — Campaña Meta Ads Istanbul
+
+---
+
+*BlockTravelAgency.com — IBott Studio © 2025*
