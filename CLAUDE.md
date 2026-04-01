@@ -140,33 +140,38 @@ Pricing Agent → Marketing Agent → Landing Builder → Leads Agent → Campa�
 
 ## 6. SKILLS INSTALADAS
 
-| Skill | Fuente | Agente asignado |
-|-------|--------|-----------------|
-| paid-ads | coreyhaines31/marketingskills | Marketing Intelligence |
-| ad-creative | coreyhaines31/marketingskills | Marketing Intelligence |
-| copywriting | coreyhaines31/marketingskills | Marketing Intelligence / SEO |
-| copy-editing | coreyhaines31/marketingskills | Marketing Intelligence |
-| one-page-marketing | wondelai/skills | Marketing Intelligence |
-| analytics-tracking | coreyhaines31/marketingskills | Marketing Intelligence |
-| landing-page-design | inferen-sh/skills | Landing Builder |
-| landing-page-copywriter | onewave-ai/claude-skills | Landing Builder |
-| frontend-design | anthropics/skills | Landing Builder |
-| page-cro | coreyhaines31/marketingskills | Landing Builder |
-| email-design | inferen-sh/skills | Landing Builder |
-| apify-lead-generation | apify/agent-skills | Leads & CRM |
-| lead-magnets | coreyhaines31/marketingskills | Leads & CRM |
-| gws-sheets | googleworkspace/cli | Leads & CRM |
-| email-sequence | coreyhaines31/marketingskills | Leads & CRM |
-| n8n-workflow-patterns | czlonkowski/n8n-skills | Leads & CRM / Infraestructura |
-| n8n-mcp-tools-expert | czlonkowski/n8n-skills | Infraestructura |
-| travel-planner | ailabs-393/ai-labs-claude-skills | Pricing & Research |
-| seo-audit | coreyhaines31/marketingskills | SEO & Contenido |
-| seo-geo | resciencelab/opc-skills | SEO & Contenido |
-| programmatic-seo | coreyhaines31/marketingskills | SEO & Contenido |
-| ai-seo | coreyhaines31/marketingskills | SEO & Contenido |
-| seo-content-brief | inferen-sh/skills | SEO & Contenido |
-| stripe-best-practices | stripe/ai | Infraestructura |
-| find-skills | vercel-labs/skills | Sistema |
+### Skills de marketplace (instaladas via claude skills add)
+| Skill | Plugin instalado | Fuente | Agente asignado |
+|-------|-----------------|--------|-----------------|
+| paid-ads | marketing-skills | coreyhaines31/marketingskills | Marketing Intelligence |
+| ad-creative | marketing-skills | coreyhaines31/marketingskills | Marketing Intelligence |
+| copywriting | marketing-skills | coreyhaines31/marketingskills | Marketing Intelligence / SEO |
+| copy-editing | marketing-skills | coreyhaines31/marketingskills | Marketing Intelligence |
+| one-page-marketing | marketing-cro | wondelai/skills | Marketing Intelligence |
+| analytics-tracking | marketing-skills | coreyhaines31/marketingskills | Marketing Intelligence |
+| frontend-design | example-skills | anthropics/skills | Landing Builder |
+| page-cro | marketing-skills | coreyhaines31/marketingskills | Landing Builder |
+| apify-lead-generation | apify-ultimate-scraper | apify/agent-skills | Leads & CRM |
+| lead-magnets | marketing-skills | coreyhaines31/marketingskills | Leads & CRM |
+| email-sequence | marketing-skills | coreyhaines31/marketingskills | Leads & CRM |
+| n8n-workflow-patterns | n8n-mcp-skills | czlonkowski/n8n-skills | Leads & CRM / Infraestructura |
+| n8n-mcp-tools-expert | n8n-mcp-skills | czlonkowski/n8n-skills | Infraestructura |
+| seo-audit | marketing-skills | coreyhaines31/marketingskills | SEO & Contenido |
+| seo-geo | seo-geo | resciencelab/opc-skills | SEO & Contenido |
+| programmatic-seo | marketing-skills | coreyhaines31/marketingskills | SEO & Contenido |
+| ai-seo | marketing-skills | coreyhaines31/marketingskills | SEO & Contenido |
+| stripe-best-practices | stripe | stripe/ai | Infraestructura |
+
+### Skills locales del proyecto (.claude/skills/)
+| Skill | Archivo | Agente asignado |
+|-------|---------|-----------------|
+| landing-page-design | .claude/skills/landing-page-design.md | Landing Builder |
+| landing-page-copywriter | .claude/skills/landing-page-copywriter.md | Landing Builder |
+| email-design | .claude/skills/email-design.md | Landing Builder |
+| gws-sheets | .claude/skills/gws-sheets.md | Leads & CRM |
+| travel-planner | .claude/skills/travel-planner.md | Pricing & Research |
+| seo-content-brief | .claude/skills/seo-content-brief.md | SEO & Contenido |
+| find-skills | .claude/skills/find-skills.md | Sistema / Líder |
 
 ---
 
