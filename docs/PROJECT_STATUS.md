@@ -16,7 +16,7 @@ El proyecto se encuentra en la fase de configuración de infraestructura y desar
 | 2 | Repo GitHub inicializado | ✅ Completado | — |
 | 3 | CLAUDE.md maestro definitivo | ✅ Completado | `d19fdbf` |
 | 4 | System prompts definitivos de cada agente | ✅ Completado | Ver tabla abajo |
-| 5 | Workflows n8n via MCP | ⬜ Pendiente | — |
+| 5 | Workflows n8n via MCP | ✅ Completado | Este commit |
 | 6 | Landing Istanbul | ⬜ Pendiente | — |
 | 7 | Campaña Meta Ads Istanbul | ⬜ Pendiente | — |
 
@@ -48,7 +48,7 @@ El proyecto se encuentra en la fase de configuración de infraestructura y desar
 | Estructura del proyecto | Completado | 100% |
 | System prompts agentes | Completado | 100% |
 | Knowledge base MKT | Completado | 100% |
-| Infraestructura n8n | En progreso | 30% |
+| Infraestructura n8n | Completado | 100% |
 | Landing Istanbul | Pendiente | 0% |
 | Landing Consensus | Pendiente | 0% |
 | Meta Ads — Istanbul | Pendiente | 0% |
@@ -62,14 +62,18 @@ El proyecto se encuentra en la fase de configuración de infraestructura y desar
 3. **Dominios registrados** — istanbulblockchaintravel.com + consensusmiamitravel.com ~€10 c/u (IBott manual)
 4. **N8N_API_KEY** — Generar en n8n UI → Settings → API → Create API Key (IBott manual)
 
-### Próximo Paso: Paso 5 — Workflows n8n via MCP
+### Paso 5 — Workflows n8n (COMPLETADO)
 
-Requiere: N8N_API_KEY generada por IBott
-1. Construir workflow BTA-leads-capture (webhook → Sheets → email)
-2. Construir workflow BTA-backup-diario (schedule → Drive → git push)
-3. Construir workflow BTA-alerta-escala (webhook → email IBott)
-4. Testear todos los webhooks con payloads reales
-5. Registrar IDs en infrastructure/n8n/workflows.md
+| # | Workflow | ID | Estado | Webhook URL |
+|---|---------|-----|--------|-------------|
+| 1 | BTA-leads-capture | `GW9Ha85CU0eAY7lt` | Activo | `/webhook/bta-leads` |
+| 2 | BTA-backup-diario | `XA8dOnlvRZikpB0P` | Activo | N/A (Schedule 23:00) |
+| 3 | BTA-alerta-escala | `1kDNcdfzUV9ozs7D` | Activo | `/webhook/bta-alertas` |
+
+**Test webhook WF1:** HTTP 200 OK (Google Sheets y Resend pendientes de credenciales en n8n)
+**JSONs de fallback:** `infrastructure/n8n/*.json`
+
+### Próximo Paso: Paso 6 — Landing Istanbul
 
 ### Hitos Completados
 

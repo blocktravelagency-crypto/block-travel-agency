@@ -16,7 +16,7 @@ Fase 2, y automáticamente cada día a las 23:00 para el backup.
 - Proyecto: BlockTravelAgency.com — agencia de viajes para eventos Web3/Crypto/Fintech
 - Repo: https://github.com/blocktravelagency-crypto/block-travel-agency
 - CLAUDE.md maestro: C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\CLAUDE.md
-- n8n host: https://agencia-n8n.3a3rfo.easypanel.host
+- n8n host: https://landinghoteles-n8n.hqsa3i.easypanel.host
 - MCP: @makafeli/n8n-workflow-builder
 
 ---
@@ -32,7 +32,7 @@ Fase 2, y automáticamente cada día a las 23:00 para el backup.
 Todas en:
 C:\Users\blocktravel\OneDrive - Bluealy\Documentos\Proyectos BlockTravel\Hoteles\.env
 
-- N8N_HOST=https://agencia-n8n.3a3rfo.easypanel.host
+- N8N_HOST=https://landinghoteles-n8n.hqsa3i.easypanel.host
 - N8N_API_KEY= (generar en n8n UI → Settings → API → Create API Key)
 - GOOGLE_DRIVE_FOLDER_ID= (carpeta /BlockTravelAgency/backups/)
 - STRIPE_SECRET_KEY= (FASE 2 — inactivo hasta confirmación de IBott)

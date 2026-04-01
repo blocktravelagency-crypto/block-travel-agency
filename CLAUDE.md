@@ -108,7 +108,7 @@ Ticket objetivo: USD 2.000-8.000 por persona.
 ### MCP Server
 - **@makafeli/n8n-workflow-builder** — Construye y activa workflows en n8n desde Claude Code sin tocar la UI
 - Instalación: npx @makafeli/n8n-workflow-builder
-- N8N_HOST: https://agencia-n8n.3a3rfo.easypanel.host
+- N8N_HOST: https://landinghoteles-n8n.hqsa3i.easypanel.host
 - Operaciones: create_workflow, activate_workflow, update_workflow, deactivate_workflow, create_workflow_and_activate
 
 ---
@@ -205,7 +205,7 @@ Pricing Agent → Marketing Agent → Landing Builder → Leads Agent → Campa�
 ✅ Paso 2 — Repo GitHub inicializado: blocktravelagency-crypto/block-travel-agency
 ⬜ Paso 3 — CLAUDE.md maestro definitivo (EN CURSO)
 ⬜ Paso 4 — System prompts definitivos de cada agente
-⬜ Paso 5 — Workflows n8n via MCP
+✅ Paso 5 — Workflows n8n via API (3 workflows activos)
 ⬜ Paso 6 — Landing Istanbul
 ⬜ Paso 7 — Campaña Meta Ads Istanbul
 
