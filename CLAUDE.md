@@ -189,21 +189,31 @@ Pricing Agent → Marketing Agent → Landing Builder → Leads Agent → Campa�
 
 ---
 
-## 8. BLOQUEANTES PENDIENTES (al 31/03/2026)
+## 8. BLOQUEANTES PENDIENTES (al 01/04/2026)
 
+### Resueltos
+| # | Bloqueante | Estado |
+|---|-----------|--------|
+| 1 | N8N_API_KEY | ✅ Configurada |
+| 2 | GOOGLE_DRIVE_FOLDER_ID | ✅ Configurada |
+| 3 | GOOGLE_SHEETS_ID | ✅ Configurada |
+| 4 | RESEND_API_KEY | ✅ Configurada |
+
+### Pendientes
 | # | Bloqueante | Acción requerida | Quién |
 |---|-----------|------------------|-------|
 | 1 | Precio base Istanbul | Consultar Booking/Expedia para el periodo del evento y confirmar rango publicable | IBott + Pricing Agent |
 | 2 | Cuenta Meta Business Manager | Crear cuenta y verificar (puede tomar 24-48h) | IBott (manual) |
 | 3 | Dominios registrados | istanbulblockchaintravel.com + consensusmiamitravel.com (~€10 c/u) | IBott (manual) |
-| 4 | N8N_API_KEY | Generar en n8n UI → Settings → API → Create API Key | IBott (manual) |
+| 4 | Google Sheets OAuth2 | Configurar credencial en n8n UI para que WF-001 escriba en Sheets | IBott (manual en n8n UI) |
+| 5 | Google Drive OAuth2 | Configurar credencial en n8n UI para que WF-002 suba backups | IBott (manual en n8n UI) |
 
 ---
 
 ## 9. ESTADO ACTUAL DEL PROYECTO
 ✅ Paso 1 — Estructura de carpetas y archivos base creada
 ✅ Paso 2 — Repo GitHub inicializado: blocktravelagency-crypto/block-travel-agency
-⬜ Paso 3 — CLAUDE.md maestro definitivo (EN CURSO)
+✅ Paso 3 — CLAUDE.md maestro definitivo
 ⬜ Paso 4 — System prompts definitivos de cada agente
 ✅ Paso 5 — Workflows n8n via API (3 workflows activos)
 ⬜ Paso 6 — Landing Istanbul
