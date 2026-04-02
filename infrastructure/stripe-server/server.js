@@ -72,3 +72,13 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Stripe server running on port ${PORT}`));
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM recibido — cerrando servidor');
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  console.log('SIGINT recibido — cerrando servidor');
+  process.exit(0);
+});
