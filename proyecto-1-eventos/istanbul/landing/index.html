@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel Istanbul Blockchain Week 2026 — BlockTravel Agency</title>
-  <meta name="description" content="Reservá tu hotel para Istanbul Blockchain Week 2026. 3 noches con desayuno desde €747. Pago seguro online. Plazas limitadas.">
+  <meta name="description" content="Reservá tu hotel para Istanbul Blockchain Week 2026. Desde €249/noche con desayuno. Elegí tus fechas y pagá seguro online. Plazas limitadas.">
 
   <!-- OG Tags -->
   <meta property="og:title" content="Hotel Istanbul Blockchain Week 2026 — BlockTravel Agency">
@@ -48,19 +48,19 @@
       <a href="#" class="navbar__logo">
         <img src="assets/logo-black.png" alt="BlockTravel Agency" width="110">
       </a>
-      <a href="#" class="btn btn--primary btn-checkout">Reservar ahora</a>
+      <a href="#calculador" class="btn btn--primary btn-checkout">Reservar ahora</a>
     </div>
   </nav>
 
   <!-- SECCIÓN 1 — HERO -->
   <section class="hero" id="hero">
     <div class="container">
-      <div class="hero__badge">⚡ Plazas limitadas — 1 al 4 de Junio 2026</div>
+      <div class="hero__badge">⚡ Plazas limitadas — 30 Mayo al 6 Junio 2026</div>
       <h1 class="hero__title">Tu hotel en Istanbul Blockchain Week — antes de que se agoten</h1>
-      <p class="hero__subtitle">Alojamiento con desayuno incluido. 3 noches desde €747. Pago seguro online.</p>
+      <p class="hero__subtitle">Alojamiento con desayuno incluido. Desde €249/noche. Elegí tus fechas y pagá seguro online.</p>
       <div class="hero__buttons">
-        <a href="#" class="btn btn--dark btn-checkout">Reservar ahora — €747</a>
-        <a href="#precio" class="btn btn--outline">Ver detalles</a>
+        <a href="#calculador" class="btn btn--dark btn-checkout">Reservar ahora — desde €249/noche</a>
+        <a href="#calculador" class="btn btn--outline">Calcular precio</a>
       </div>
     </div>
   </section>
@@ -127,15 +127,56 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 4 — PRECIO -->
-  <section class="precio" id="precio">
+  <!-- SECCIÓN 4 — CALCULADOR -->
+  <section class="precio" id="calculador">
     <div class="container">
-      <p class="precio__label">Paquete completo</p>
-      <p class="precio__amount">€747</p>
-      <p class="precio__detail">3 noches con desayuno — 1 al 4 de Junio 2026</p>
-      <p class="precio__breakdown">€249/noche × 3 noches</p>
-      <a href="#" class="btn btn--primary btn--large btn-checkout">Reservar ahora — Pago seguro con Stripe</a>
-      <p class="precio__note">Pago único. Sin cargos ocultos. Confirmación inmediata por email.</p>
+      <div class="calculator">
+        <h2 class="calculator__title">Calculá tu reserva</h2>
+        <p class="calculator__subtitle">Istanbul Blockchain Week 2026 — 30 Mayo al 6 Junio 2026</p>
+
+        <div class="calc-grid">
+          <div class="calc-field">
+            <label for="fecha-entrada">Fecha de entrada</label>
+            <input type="date" id="fecha-entrada" min="2026-05-30" max="2026-06-05" value="2026-06-01">
+          </div>
+          <div class="calc-field">
+            <label for="fecha-salida">Fecha de salida</label>
+            <input type="date" id="fecha-salida" min="2026-05-31" max="2026-06-06" value="2026-06-04">
+          </div>
+          <div class="calc-field">
+            <label for="habitaciones">Habitaciones</label>
+            <select id="habitaciones">
+              <option value="1">1 habitación</option>
+              <option value="2">2 habitaciones</option>
+              <option value="3">3 habitaciones</option>
+              <option value="4">4 habitaciones</option>
+              <option value="5">5 habitaciones</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calc-result">
+          <div class="calc-breakdown">
+            <span id="calc-noches">3</span> noches ×
+            <span id="calc-hab">1</span> hab ×
+            €249/noche
+          </div>
+          <div class="calc-total">
+            Total: <strong id="calc-precio">€747</strong>
+          </div>
+        </div>
+
+        <div class="calc-fields-contacto">
+          <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+          <input type="email" id="email" placeholder="Tu email" required>
+          <input type="tel" id="telefono" placeholder="Teléfono (con código de país)" required>
+        </div>
+
+        <button class="btn btn--primary btn--large calculator__btn" id="btn-reservar">
+          Reservar ahora — <span id="btn-precio">€747</span>
+        </button>
+        <p class="calc-nota">Pago 100% seguro con Stripe. Confirmación inmediata por email.</p>
+      </div>
     </div>
   </section>
 
@@ -156,18 +197,18 @@
       <div class="steps">
         <div class="step">
           <span class="step__number">1</span>
-          <h3 class="step__title">Hacé click en Reservar</h3>
-          <p class="step__text">Completás el pago seguro con Stripe</p>
+          <h3 class="step__title">Elegí tus fechas</h3>
+          <p class="step__text">Seleccioná entrada, salida y habitaciones</p>
         </div>
         <div class="step">
           <span class="step__number">2</span>
-          <h3 class="step__title">Recibís confirmación</h3>
-          <p class="step__text">Email inmediato con los detalles de tu reserva</p>
+          <h3 class="step__title">Pagá seguro con Stripe</h3>
+          <p class="step__text">El precio se calcula automáticamente</p>
         </div>
         <div class="step">
           <span class="step__number">3</span>
-          <h3 class="step__title">Disfrutá el evento</h3>
-          <p class="step__text">Hotel confirmado, desayuno incluido</p>
+          <h3 class="step__title">Recibí confirmación</h3>
+          <p class="step__text">Email inmediato con los detalles de tu reserva</p>
         </div>
       </div>
     </div>
@@ -209,7 +250,7 @@
     <div class="container">
       <img src="assets/logo-white.png" alt="BlockTravel Agency" class="cta-final__logo" width="130">
       <h2 class="cta-final__title">Asegurá tu hotel antes de que se agoten las plazas</h2>
-      <a href="#" class="btn btn--primary btn--large btn-checkout">Reservar ahora — €747</a>
+      <a href="#calculador" class="btn btn--primary btn--large btn-checkout">Reservar ahora — desde €249/noche</a>
       <footer class="footer">
         <p>© 2026 BlockTravel Agency · info@blocktravelagency.com</p>
       </footer>

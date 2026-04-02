@@ -450,3 +450,144 @@ h1, h2, h3 {
     font-size: 6rem;
   }
 }
+
+/* ============================================
+   CALCULADOR
+   ============================================ */
+.calculator {
+  background: #ffffff;
+  border: 2px solid #DDFE7E;
+  border-radius: 12px;
+  padding: 2.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.calculator__title {
+  font-weight: 900;
+  font-size: 1.75rem;
+  text-align: center;
+  margin-bottom: 8px;
+  color: #262328;
+}
+
+.calculator__subtitle {
+  text-align: center;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #262328;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+
+.calculator__btn {
+  width: 100%;
+  font-size: 1.125rem;
+  padding: 18px 36px;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.calc-field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  color: #262328;
+}
+
+.calc-field input,
+.calc-field select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #E2E2E2;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #262328;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.calc-field input:focus,
+.calc-field select:focus {
+  outline: none;
+  border-color: #262328;
+}
+
+.calc-result {
+  background: #262328;
+  color: white;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calc-breakdown {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.calc-total {
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.calc-fields-contacto {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.calc-fields-contacto input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #E2E2E2;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #262328;
+}
+
+.calc-fields-contacto input:focus {
+  outline: none;
+  border-color: #262328;
+}
+
+.calc-nota {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calc-fields-contacto {
+    grid-template-columns: 1fr;
+  }
+
+  .calc-result {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .calculator {
+    padding: 1.5rem;
+  }
+}
