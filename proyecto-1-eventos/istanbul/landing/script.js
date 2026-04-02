@@ -1,131 +1,90 @@
-/* ============================================
-   BLOCKTRAVEL — Istanbul Blockchain Week 2026
-   Calculador de precio dinámico + Stripe Checkout
-   ============================================ */
+// ============================================================
+// BLOCKTRAVEL — Istanbul Blockchain Week 2026
+// Stripe Payment Link con cantidad dinámica
+// ============================================================
 
+var STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/test_eVq6oH16DcY65Pz24KdfG00';
 var PRECIO_POR_NOCHE = 249;
-var WEBHOOK_URL = 'https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-stripe-checkout';
-var SUCCESS_URL = 'https://blocktravelagency-crypto.github.io/block-travel-agency/proyecto-1-eventos/istanbul/landing/thank-you.html';
-var CANCEL_URL = 'https://blocktravelagency-crypto.github.io/block-travel-agency/proyecto-1-eventos/istanbul/landing/index.html';
 
 // --- Calculador ---
 function calcularNoches(entrada, salida) {
   var d1 = new Date(entrada);
   var d2 = new Date(salida);
   var diff = (d2 - d1) / (1000 * 60 * 60 * 24);
-  return diff > 0 ? diff : 0;
+  return diff > 0 ? Math.round(diff) : 0;
 }
 
 function actualizarCalculador() {
-  var entrada = document.getElementById('fecha-entrada').value;
-  var salida = document.getElementById('fecha-salida').value;
-  var habitaciones = parseInt(document.getElementById('habitaciones').value);
+  var entradaEl = document.getElementById('fecha-entrada');
+  var salidaEl = document.getElementById('fecha-salida');
+  var habEl = document.getElementById('habitaciones');
+
+  var entrada = entradaEl ? entradaEl.value : '';
+  var salida = salidaEl ? salidaEl.value : '';
+  var habitaciones = habEl ? parseInt(habEl.value) : 1;
+
+  if (!entrada || !salida) return { noches: 0, habitaciones: habitaciones, total: 0, cantidad: 0, entrada: entrada, salida: salida };
 
   var noches = calcularNoches(entrada, salida);
   var total = noches * habitaciones * PRECIO_POR_NOCHE;
+  var cantidad = noches * habitaciones;
 
   document.getElementById('calc-noches').textContent = noches;
   document.getElementById('calc-hab').textContent = habitaciones;
   document.getElementById('calc-precio').textContent = '\u20AC' + total.toLocaleString('es-ES');
-  document.getElementById('btn-precio').textContent = '\u20AC' + total.toLocaleString('es-ES');
 
-  // Validar que salida sea posterior a entrada
-  var salidaInput = document.getElementById('fecha-salida');
-  if (entrada) {
-    var minSalida = new Date(entrada);
-    minSalida.setDate(minSalida.getDate() + 1);
-    salidaInput.min = minSalida.toISOString().split('T')[0];
+  var btnPrecio = document.getElementById('btn-precio');
+  if (btnPrecio) btnPrecio.textContent = '\u20AC' + total.toLocaleString('es-ES');
+
+  var btnReservar = document.getElementById('btn-reservar');
+  if (btnReservar && noches > 0) {
+    btnReservar.textContent = 'Reservar ahora \u2014 \u20AC' + total.toLocaleString('es-ES');
   }
 
-  return { noches: noches, habitaciones: habitaciones, total: total, entrada: entrada, salida: salida };
+  // Validar fecha salida posterior a entrada
+  if (entrada && salidaEl) {
+    var minSalida = new Date(entrada);
+    minSalida.setDate(minSalida.getDate() + 1);
+    salidaEl.min = minSalida.toISOString().split('T')[0];
+  }
+
+  return { noches: noches, habitaciones: habitaciones, total: total, cantidad: cantidad, entrada: entrada, salida: salida };
 }
 
-// --- Checkout ---
-async function handleCheckout() {
+// --- Checkout con Payment Link ---
+function handleCheckout() {
   var calc = actualizarCalculador();
   var noches = calc.noches;
-  var habitaciones = calc.habitaciones;
-  var total = calc.total;
-  var entrada = calc.entrada;
-  var salida = calc.salida;
+  var cantidad = calc.cantidad;
 
   // Validaciones
-  var nombre = document.getElementById('nombre').value.trim();
-  var email = document.getElementById('email').value.trim();
-  var telefono = document.getElementById('telefono').value.trim();
+  var nombreEl = document.getElementById('nombre');
+  var emailEl = document.getElementById('email');
+  var telefonoEl = document.getElementById('telefono');
+
+  var nombre = nombreEl ? nombreEl.value.trim() : '';
+  var email = emailEl ? emailEl.value.trim() : '';
+  var telefono = telefonoEl ? telefonoEl.value.trim() : '';
 
   if (!nombre || !email || !telefono) {
-    alert('Por favor completá todos los campos (nombre, email y teléfono).');
+    alert('Por favor complet\u00E1 todos los campos: nombre, email y tel\u00E9fono.');
     return;
   }
   if (noches === 0) {
     alert('La fecha de salida debe ser posterior a la fecha de entrada.');
     return;
   }
-  if (total === 0) {
-    alert('Por favor seleccioná las fechas de tu estadía.');
-    return;
-  }
 
   // Track InitiateCheckout with Meta Pixel
   if (typeof fbq === 'function') {
-    fbq('track', 'InitiateCheckout', { value: total, currency: 'EUR' });
+    fbq('track', 'InitiateCheckout', { value: calc.total, currency: 'EUR' });
   }
 
-  // UI loading
-  var btn = document.getElementById('btn-reservar');
-  btn.textContent = 'Procesando...';
-  btn.disabled = true;
+  // Construir URL del Payment Link con cantidad dinámica
+  // cantidad = noches × habitaciones (cada unidad = 1 noche × 1 habitación = €249)
+  var url = STRIPE_PAYMENT_LINK + '?quantity=' + cantidad + '&prefilled_email=' + encodeURIComponent(email);
 
-  try {
-    var body = {
-      amount: total * 100,
-      currency: 'eur',
-      nombre: nombre,
-      email: email,
-      telefono: telefono,
-      fecha_entrada: entrada,
-      fecha_salida: salida,
-      noches: noches,
-      habitaciones: habitaciones,
-      precio_por_noche: PRECIO_POR_NOCHE,
-      total: total,
-      evento: 'istanbul',
-      description: 'Hotel Istanbul Blockchain Week 2026 — ' + noches + ' noche(s) x ' + habitaciones + ' hab.',
-      success_url: SUCCESS_URL,
-      cancel_url: CANCEL_URL
-    };
-
-    var response = await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-
-    var text = await response.text();
-
-    if (!text || text.trim() === '') {
-      throw new Error('El servidor no respondió. Por favor intentá de nuevo.');
-    }
-
-    var data = JSON.parse(text);
-
-    if (data.checkout_url) {
-      window.location.href = data.checkout_url;
-    } else if (data.url) {
-      window.location.href = data.url;
-    } else {
-      throw new Error('No se recibió la URL de pago. Contactanos a info@blocktravelagency.com');
-    }
-
-  } catch (error) {
-    btn.innerHTML = 'Reservar ahora — <span id="btn-precio">\u20AC' + total.toLocaleString('es-ES') + '</span>';
-    btn.disabled = false;
-    alert('Error: ' + error.message);
-  }
+  window.location.href = url;
 }
 
 // --- Inicializar ---
@@ -138,10 +97,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Botón checkout
   var btn = document.getElementById('btn-reservar');
-  if (btn) btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    handleCheckout();
-  });
+  if (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      handleCheckout();
+    });
+  }
 
   // Navbar y CTA final → scroll al calculador
   document.querySelectorAll('.btn-checkout').forEach(function (b) {
