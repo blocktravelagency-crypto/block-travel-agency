@@ -1,10 +1,17 @@
 // ============================================================
 // BLOCKTRAVEL — Istanbul Blockchain Week 2026
-// Stripe Payment Link con cantidad dinámica
+// Stripe Checkout directo desde frontend — sin backend
 // ============================================================
 
-var STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/test_eVq6oH16DcY65Pz24KdfG00';
+var STRIPE_PUBLISHABLE_KEY = 'pk_live_51THlQaRidwmiNfVGIDR6gngYioJo23N7HONmIT9jNIkGDQvTdu2Esn3P4H6QmvZt8MerXx0gOJMSc529aEonURSN00T4rpo6G4';
+var STRIPE_PRICE_ID = 'price_1THlpNRidwmiNfVGgeNeLfOz';
 var PRECIO_POR_NOCHE = 249;
+
+var SUCCESS_URL = 'https://landinghoteles-istanbul-landing.hqsa3i.easypanel.host/thank-you.html';
+var CANCEL_URL = 'https://landinghoteles-istanbul-landing.hqsa3i.easypanel.host/';
+
+// Inicializar Stripe
+var stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 
 // --- Calculador ---
 function calcularNoches(entrada, salida) {
@@ -23,41 +30,38 @@ function actualizarCalculador() {
   var salida = salidaEl ? salidaEl.value : '';
   var habitaciones = habEl ? parseInt(habEl.value) : 1;
 
-  if (!entrada || !salida) return { noches: 0, habitaciones: habitaciones, total: 0, cantidad: 0, entrada: entrada, salida: salida };
+  if (!entrada || !salida) return { noches: 0, habitaciones: habitaciones, total: 0, cantidad: 0 };
 
   var noches = calcularNoches(entrada, salida);
-  var total = noches * habitaciones * PRECIO_POR_NOCHE;
   var cantidad = noches * habitaciones;
+  var total = cantidad * PRECIO_POR_NOCHE;
 
   document.getElementById('calc-noches').textContent = noches;
   document.getElementById('calc-hab').textContent = habitaciones;
   document.getElementById('calc-precio').textContent = '\u20AC' + total.toLocaleString('es-ES');
-
-  var btnPrecio = document.getElementById('btn-precio');
-  if (btnPrecio) btnPrecio.textContent = '\u20AC' + total.toLocaleString('es-ES');
 
   var btnReservar = document.getElementById('btn-reservar');
   if (btnReservar && noches > 0) {
     btnReservar.textContent = 'Reservar ahora \u2014 \u20AC' + total.toLocaleString('es-ES');
   }
 
-  // Validar fecha salida posterior a entrada
-  if (entrada && salidaEl) {
+  var salidaInput = document.getElementById('fecha-salida');
+  if (entrada && salidaInput) {
     var minSalida = new Date(entrada);
     minSalida.setDate(minSalida.getDate() + 1);
-    salidaEl.min = minSalida.toISOString().split('T')[0];
+    salidaInput.min = minSalida.toISOString().split('T')[0];
   }
 
   return { noches: noches, habitaciones: habitaciones, total: total, cantidad: cantidad, entrada: entrada, salida: salida };
 }
 
-// --- Checkout con Payment Link ---
-function handleCheckout() {
+// --- Checkout con Stripe.js directo ---
+async function handleCheckout() {
   var calc = actualizarCalculador();
   var noches = calc.noches;
   var cantidad = calc.cantidad;
+  var total = calc.total;
 
-  // Validaciones
   var nombreEl = document.getElementById('nombre');
   var emailEl = document.getElementById('email');
   var telefonoEl = document.getElementById('telefono');
@@ -77,14 +81,38 @@ function handleCheckout() {
 
   // Track InitiateCheckout with Meta Pixel
   if (typeof fbq === 'function') {
-    fbq('track', 'InitiateCheckout', { value: calc.total, currency: 'EUR' });
+    fbq('track', 'InitiateCheckout', { value: total, currency: 'EUR' });
   }
 
-  // Construir URL del Payment Link con cantidad dinámica
-  // cantidad = noches × habitaciones (cada unidad = 1 noche × 1 habitación = €249)
-  var url = STRIPE_PAYMENT_LINK + '?quantity=' + cantidad + '&prefilled_email=' + encodeURIComponent(email);
+  var btn = document.getElementById('btn-reservar');
+  btn.textContent = 'Procesando...';
+  btn.disabled = true;
 
-  window.location.href = url;
+  try {
+    // cantidad = noches × habitaciones
+    // Cada unidad del price_id = 1 noche × 1 habitación = €249
+    var result = await stripe.redirectToCheckout({
+      lineItems: [
+        {
+          price: STRIPE_PRICE_ID,
+          quantity: cantidad
+        }
+      ],
+      mode: 'payment',
+      customerEmail: email,
+      successUrl: SUCCESS_URL + '?session_id={CHECKOUT_SESSION_ID}',
+      cancelUrl: CANCEL_URL
+    });
+
+    if (result.error) {
+      throw new Error(result.error.message);
+    }
+
+  } catch (error) {
+    btn.textContent = 'Reservar ahora \u2014 \u20AC' + total.toLocaleString('es-ES');
+    btn.disabled = false;
+    alert('Error: ' + error.message);
+  }
 }
 
 // --- Inicializar ---
