@@ -1,0 +1,5 @@
+deploy-log.md
+Dockerfile
+nginx.conf
+.dockerignore
+*.md
