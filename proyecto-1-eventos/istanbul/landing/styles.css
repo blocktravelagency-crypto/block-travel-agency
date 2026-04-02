@@ -1,0 +1,452 @@
+/* ============================================
+   BlockTravel Agency — Istanbul Blockchain Week 2026
+   Identity: #DDFE7E / #262328 / #FC8865 / #86D0E2
+   ============================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 300;
+  color: #262328;
+  background: #F5F5F5;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- Typography --- */
+h1, h2, h3 {
+  line-height: 1.15;
+}
+
+.section-title {
+  font-weight: 900;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  text-align: center;
+}
+
+.btn:hover {
+  opacity: 0.88;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: #DDFE7E;
+  color: #262328;
+  border-color: #DDFE7E;
+}
+
+.btn--dark {
+  background: #262328;
+  color: #fff;
+  border-color: #262328;
+}
+
+.btn--outline {
+  background: transparent;
+  color: #262328;
+  border-color: #262328;
+}
+
+.btn--large {
+  font-size: 1.125rem;
+  padding: 18px 36px;
+}
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid #E2E2E2;
+}
+
+.navbar__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo img {
+  width: 110px;
+  min-width: 110px;
+}
+
+.navbar .btn {
+  font-size: 0.875rem;
+  padding: 10px 20px;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  background: #DDFE7E;
+  padding: 80px 0 72px;
+  text-align: center;
+}
+
+.hero__badge {
+  display: inline-block;
+  background: #262328;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 8px 20px;
+  border-radius: 4px;
+  margin-bottom: 32px;
+}
+
+.hero__title {
+  font-weight: 900;
+  font-size: 2.5rem;
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.hero__subtitle {
+  font-weight: 400;
+  font-size: 1.125rem;
+  max-width: 520px;
+  margin: 0 auto 40px;
+  opacity: 0.85;
+}
+
+.hero__buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   PROBLEMA
+   ============================================ */
+.problema {
+  background: #fff;
+  padding: 80px 0;
+}
+
+/* --- Cards grid --- */
+.cards {
+  display: grid;
+  gap: 24px;
+}
+
+.cards--3 {
+  grid-template-columns: 1fr;
+}
+
+.card {
+  border: 1px solid #E2E2E2;
+  border-radius: 8px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.card__icon {
+  margin-bottom: 20px;
+}
+
+.card__text {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* ============================================
+   SOLUCIÓN
+   ============================================ */
+.solucion {
+  background: #F5F5F5;
+  padding: 80px 0;
+}
+
+.card--accent {
+  position: relative;
+  border: none;
+  background: #fff;
+}
+
+.card__accent-bar {
+  width: 48px;
+  height: 4px;
+  background: #DDFE7E;
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+
+/* ============================================
+   PRECIO
+   ============================================ */
+.precio {
+  background: #262328;
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.precio__label {
+  font-weight: 400;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.precio__amount {
+  font-weight: 900;
+  font-size: 5rem;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.precio__detail {
+  font-weight: 400;
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+
+.precio__breakdown {
+  font-weight: 300;
+  font-size: 0.875rem;
+  margin-bottom: 40px;
+  opacity: 0.6;
+}
+
+.precio .btn {
+  margin-bottom: 20px;
+}
+
+.precio__note {
+  font-weight: 300;
+  font-size: 0.8125rem;
+  opacity: 0.5;
+}
+
+/* ============================================
+   URGENCIA
+   ============================================ */
+.urgencia {
+  background: #DDFE7E;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.urgencia__subtitle {
+  font-weight: 400;
+  font-size: 1.125rem;
+  margin-bottom: 16px;
+}
+
+.urgencia__text {
+  font-weight: 300;
+  font-size: 1rem;
+  max-width: 520px;
+  margin: 0 auto 32px;
+}
+
+.urgencia__badge {
+  display: inline-block;
+  background: #262328;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 10px 24px;
+  border-radius: 4px;
+}
+
+/* ============================================
+   PROCESO
+   ============================================ */
+.proceso {
+  background: #fff;
+  padding: 80px 0;
+}
+
+.steps {
+  display: grid;
+  gap: 40px;
+}
+
+.step {
+  text-align: center;
+}
+
+.step__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: #DDFE7E;
+  color: #262328;
+  font-weight: 900;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.step__title {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+}
+
+.step__text {
+  font-weight: 300;
+  font-size: 0.9375rem;
+  opacity: 0.75;
+}
+
+/* ============================================
+   CONFIANZA
+   ============================================ */
+.confianza {
+  background: #F5F5F5;
+  padding: 64px 0;
+}
+
+.trust-items {
+  display: grid;
+  gap: 32px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.trust-item svg {
+  flex-shrink: 0;
+}
+
+.trust-item__text {
+  font-weight: 400;
+  font-size: 0.9375rem;
+}
+
+/* ============================================
+   CTA FINAL + FOOTER
+   ============================================ */
+.cta-final {
+  background: #262328;
+  color: #fff;
+  padding: 80px 0 40px;
+  text-align: center;
+}
+
+.cta-final__logo {
+  width: 130px;
+  min-width: 110px;
+  margin: 0 auto 32px;
+}
+
+.cta-final__title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  max-width: 500px;
+  margin: 0 auto 32px;
+}
+
+.footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer p {
+  font-weight: 300;
+  font-size: 0.8125rem;
+  opacity: 0.5;
+}
+
+/* ============================================
+   RESPONSIVE — Desktop (768px+)
+   ============================================ */
+@media (min-width: 768px) {
+  .hero__title {
+    font-size: 3.25rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .cards--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .trust-items {
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+  }
+
+  .trust-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .precio__amount {
+    font-size: 6rem;
+  }
+}

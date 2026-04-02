@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Istanbul Blockchain Week 2026 — BlockTravel Agency</title>
+  <meta name="description" content="Reservá tu hotel para Istanbul Blockchain Week 2026. 3 noches con desayuno desde €747. Pago seguro online. Plazas limitadas.">
+
+  <!-- OG Tags -->
+  <meta property="og:title" content="Hotel Istanbul Blockchain Week 2026 — BlockTravel Agency">
+  <meta property="og:description" content="Reservá tu hotel para Istanbul Blockchain Week 2026. 3 noches con desayuno desde €747. Pago seguro online. Plazas limitadas.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="BlockTravel Agency">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1272242170945366');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1272242170945366&ev=PageView&noscript=1"
+  /></noscript>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo">
+        <img src="assets/logo-black.png" alt="BlockTravel Agency" width="110">
+      </a>
+      <a href="#" class="btn btn--primary btn-checkout">Reservar ahora</a>
+    </div>
+  </nav>
+
+  <!-- SECCIÓN 1 — HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero__badge">⚡ Plazas limitadas — 1 al 4 de Junio 2026</div>
+      <h1 class="hero__title">Tu hotel en Istanbul Blockchain Week — antes de que se agoten</h1>
+      <p class="hero__subtitle">Alojamiento con desayuno incluido. 3 noches desde €747. Pago seguro online.</p>
+      <div class="hero__buttons">
+        <a href="#" class="btn btn--dark btn-checkout">Reservar ahora — €747</a>
+        <a href="#precio" class="btn btn--outline">Ver detalles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2 — PROBLEMA -->
+  <section class="problema" id="problema">
+    <div class="container">
+      <h2 class="section-title">¿Ya tenés el ticket pero no el hotel?</h2>
+      <div class="cards cards--3">
+        <div class="card">
+          <div class="card__icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="23" stroke="#262328" stroke-width="2" stroke-dasharray="4 4"/>
+              <path d="M16 32V20l8-6 8 6v12H16z" stroke="#262328" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 32v-6h6v6" stroke="#262328" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="16" y1="18" x2="32" y2="18" stroke="#FC8865" stroke-width="2" stroke-dasharray="3 3"/>
+            </svg>
+          </div>
+          <p class="card__text">Los hoteles cerca del evento se agotan semanas antes</p>
+        </div>
+        <div class="card">
+          <div class="card__icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="23" stroke="#262328" stroke-width="2" stroke-dasharray="4 4"/>
+              <path d="M18 30l3-8 3 4 3-6 3 10" stroke="#FC8865" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="22" y="22" font-size="12" fill="#262328" font-weight="700">x3</text>
+            </svg>
+          </div>
+          <p class="card__text">Los precios se multiplican x3 durante el evento</p>
+        </div>
+        <div class="card">
+          <div class="card__icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="23" stroke="#262328" stroke-width="2" stroke-dasharray="4 4"/>
+              <circle cx="24" cy="22" r="6" stroke="#262328" stroke-width="2"/>
+              <path d="M20 28l-4 6h16l-4-6" stroke="#262328" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="24" y1="16" x2="24" y2="28" stroke="#FC8865" stroke-width="2" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+          <p class="card__text">Horas perdidas buscando en docenas de sitios</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3 — SOLUCIÓN -->
+  <section class="solucion" id="solucion">
+    <div class="container">
+      <h2 class="section-title">BlockTravel Agency lo resuelve por vos</h2>
+      <div class="cards cards--3">
+        <div class="card card--accent">
+          <div class="card__accent-bar"></div>
+          <p class="card__text">Reservas anticipadas con touroperador — precio fijo garantizado</p>
+        </div>
+        <div class="card card--accent">
+          <div class="card__accent-bar"></div>
+          <p class="card__text">Hoteles seleccionados a pasos del venue del evento</p>
+        </div>
+        <div class="card card--accent">
+          <div class="card__accent-bar"></div>
+          <p class="card__text">Desayuno incluido — sin sorpresas ni costos extra</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4 — PRECIO -->
+  <section class="precio" id="precio">
+    <div class="container">
+      <p class="precio__label">Paquete completo</p>
+      <p class="precio__amount">€747</p>
+      <p class="precio__detail">3 noches con desayuno — 1 al 4 de Junio 2026</p>
+      <p class="precio__breakdown">€249/noche × 3 noches</p>
+      <a href="#" class="btn btn--primary btn--large btn-checkout">Reservar ahora — Pago seguro con Stripe</a>
+      <p class="precio__note">Pago único. Sin cargos ocultos. Confirmación inmediata por email.</p>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5 — URGENCIA -->
+  <section class="urgencia" id="urgencia">
+    <div class="container">
+      <h2 class="section-title">Istanbul Blockchain Week 2026</h2>
+      <p class="urgencia__subtitle">1 al 4 de Junio 2026 — Istanbul, Turquía</p>
+      <p class="urgencia__text">Los asistentes al evento ya están reservando. Las plazas se asignan por orden de compra.</p>
+      <div class="urgencia__badge">⚡ Pocas habitaciones disponibles en la zona del evento</div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 6 — PROCESO -->
+  <section class="proceso" id="proceso">
+    <div class="container">
+      <h2 class="section-title">¿Cómo funciona?</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step__number">1</span>
+          <h3 class="step__title">Hacé click en Reservar</h3>
+          <p class="step__text">Completás el pago seguro con Stripe</p>
+        </div>
+        <div class="step">
+          <span class="step__number">2</span>
+          <h3 class="step__title">Recibís confirmación</h3>
+          <p class="step__text">Email inmediato con los detalles de tu reserva</p>
+        </div>
+        <div class="step">
+          <span class="step__number">3</span>
+          <h3 class="step__title">Disfrutá el evento</h3>
+          <p class="step__text">Hotel confirmado, desayuno incluido</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 7 — CONFIANZA -->
+  <section class="confianza" id="confianza">
+    <div class="container">
+      <div class="trust-items">
+        <div class="trust-item">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="18" width="16" height="12" rx="2" stroke="#262328" stroke-width="2"/>
+            <path d="M15 18v-4a5 5 0 0 1 10 0v4" stroke="#262328" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="25" r="2" fill="#DDFE7E"/>
+          </svg>
+          <p class="trust-item__text">Pago 100% seguro — procesado por Stripe</p>
+        </div>
+        <div class="trust-item">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="12" stroke="#262328" stroke-width="2"/>
+            <path d="M15 20l3.5 3.5L25 16" stroke="#DDFE7E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="trust-item__text">Confirmación inmediata por email</p>
+        </div>
+        <div class="trust-item">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="14" width="24" height="16" rx="2" stroke="#262328" stroke-width="2"/>
+            <path d="M8 20h24" stroke="#262328" stroke-width="2"/>
+            <circle cx="20" cy="10" r="3" stroke="#DDFE7E" stroke-width="2"/>
+          </svg>
+          <p class="trust-item__text">Especialistas en viajes a eventos Web3</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 8 — CTA FINAL + FOOTER -->
+  <section class="cta-final" id="cta-final">
+    <div class="container">
+      <img src="assets/logo-white.png" alt="BlockTravel Agency" class="cta-final__logo" width="130">
+      <h2 class="cta-final__title">Asegurá tu hotel antes de que se agoten las plazas</h2>
+      <a href="#" class="btn btn--primary btn--large btn-checkout">Reservar ahora — €747</a>
+      <footer class="footer">
+        <p>© 2026 BlockTravel Agency · info@blocktravelagency.com</p>
+      </footer>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
