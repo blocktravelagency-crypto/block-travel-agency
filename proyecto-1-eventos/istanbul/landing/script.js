@@ -3,82 +3,94 @@
    Stripe Checkout + Lead webhook + Meta Pixel handlers
    ============================================ */
 
-(function () {
-  'use strict';
+// --- Stripe Checkout ---
+async function handleCheckout() {
+  var btns = document.querySelectorAll('.btn-checkout');
+  btns.forEach(function (b) { b.textContent = 'Procesando...'; b.style.opacity = '0.7'; b.style.pointerEvents = 'none'; });
 
-  // --- Stripe Checkout ---
-  async function handleCheckout(e) {
-    e.preventDefault();
-
-    // Track InitiateCheckout with Meta Pixel
-    if (typeof fbq === 'function') {
-      fbq('track', 'InitiateCheckout', { value: 747.00, currency: 'EUR' });
-    }
-
-    // Disable all checkout buttons and show loading
-    var buttons = document.querySelectorAll('.btn-checkout');
-    var originalTexts = [];
-    buttons.forEach(function (btn, i) {
-      originalTexts[i] = btn.textContent;
-      btn.textContent = 'Procesando...';
-      btn.disabled = true;
-      btn.style.pointerEvents = 'none';
-    });
-
-    try {
-      var response = await fetch(
-        'https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-stripe-checkout',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            price_id: 'price_1THlpNRidwmiNfVGgeNeLfOz',
-            quantity: 3,
-            evento: 'istanbul',
-            success_url: 'https://blocktravelagency-crypto.github.io/block-travel-agency/proyecto-1-eventos/istanbul/landing/thank-you.html',
-            cancel_url: 'https://blocktravelagency-crypto.github.io/block-travel-agency/proyecto-1-eventos/istanbul/landing/index.html'
-          })
-        }
-      );
-
-      var data = await response.json();
-      window.location.href = data.checkout_url;
-    } catch (error) {
-      // Restore buttons on error
-      buttons.forEach(function (btn, i) {
-        btn.textContent = originalTexts[i];
-        btn.disabled = false;
-        btn.style.pointerEvents = '';
-      });
-      alert('Error al procesar el pago. Por favor intentá de nuevo.');
-    }
+  // Track InitiateCheckout with Meta Pixel
+  if (typeof fbq === 'function') {
+    fbq('track', 'InitiateCheckout', { value: 747.00, currency: 'EUR' });
   }
 
-  // Attach checkout handler to all .btn-checkout elements
+  try {
+    console.log('Iniciando checkout...');
+
+    var response = await fetch(
+      'https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-stripe-checkout',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          price_id: 'price_1THlpNRidwmiNfVGgeNeLfOz',
+          quantity: 3,
+          evento: 'istanbul',
+          success_url: 'https://blocktravelagency-crypto.github.io/block-travel-agency/proyecto-1-eventos/istanbul/landing/thank-you.html',
+          cancel_url: 'https://blocktravelagency-crypto.github.io/block-travel-agency/proyecto-1-eventos/istanbul/landing/index.html'
+        })
+      }
+    );
+
+    console.log('Response status:', response.status);
+    var text = await response.text();
+    console.log('Response text:', text);
+
+    if (!text || text.trim() === '') {
+      throw new Error('El servidor respondió vacío. Verificar workflow n8n y credencial Stripe.');
+    }
+
+    var data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      throw new Error('Respuesta no es JSON válido: ' + text.substring(0, 100));
+    }
+
+    console.log('Data recibida:', data);
+
+    if (!data.checkout_url) {
+      throw new Error('No se recibió checkout_url. Respuesta: ' + JSON.stringify(data));
+    }
+
+    window.location.href = data.checkout_url;
+
+  } catch (error) {
+    console.error('Error en checkout:', error.message);
+    btns.forEach(function (b) {
+      b.textContent = 'Reservar ahora — €747';
+      b.style.opacity = '1';
+      b.style.pointerEvents = 'auto';
+    });
+    alert('Error al procesar el pago: ' + error.message + '\n\nPor favor intentá de nuevo o escribinos a info@blocktravelagency.com');
+  }
+}
+
+// Asignar evento a todos los botones de checkout
+document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.btn-checkout').forEach(function (btn) {
-    btn.addEventListener('click', handleCheckout);
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      handleCheckout();
+    });
   });
 
   // --- Lead webhook (fire on page load) ---
-  function sendLeadEvent() {
-    var payload = {
-      evento: 'istanbul',
-      pagina: window.location.href,
-      timestamp: new Date().toISOString(),
-      referrer: document.referrer || 'direct',
-      tipo: 'page_view'
-    };
+  var payload = {
+    evento: 'istanbul',
+    pagina: window.location.href,
+    timestamp: new Date().toISOString(),
+    referrer: document.referrer || 'direct',
+    tipo: 'page_view'
+  };
 
-    fetch('https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-leads', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(function () {
-      // Silently fail — don't block user experience
-    });
-  }
-
-  sendLeadEvent();
+  fetch('https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-leads', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(function () {});
 
   // --- Smooth scroll for anchor links ---
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
@@ -90,4 +102,4 @@
       }
     });
   });
-})();
+});
