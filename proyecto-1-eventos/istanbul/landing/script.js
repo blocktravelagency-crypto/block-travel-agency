@@ -1,17 +1,10 @@
 // ============================================================
 // BLOCKTRAVEL — Istanbul Blockchain Week 2026
-// Stripe Checkout directo desde frontend — sin backend
+// Stripe Checkout via servidor Node.js — precio dinámico
 // ============================================================
 
-var STRIPE_PUBLISHABLE_KEY = 'pk_live_51THlQaRidwmiNfVGIDR6gngYioJo23N7HONmIT9jNIkGDQvTdu2Esn3P4H6QmvZt8MerXx0gOJMSc529aEonURSN00T4rpo6G4';
-var STRIPE_PRICE_ID = 'price_1THlpNRidwmiNfVGgeNeLfOz';
+var CHECKOUT_API = 'https://landinghoteles-stripe-server.hqsa3i.easypanel.host/create-checkout';
 var PRECIO_POR_NOCHE = 249;
-
-var SUCCESS_URL = 'https://landinghoteles-istanbul-landing.hqsa3i.easypanel.host/thank-you.html';
-var CANCEL_URL = 'https://landinghoteles-istanbul-landing.hqsa3i.easypanel.host/';
-
-// Inicializar Stripe
-var stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 
 // --- Calculador ---
 function calcularNoches(entrada, salida) {
@@ -30,7 +23,7 @@ function actualizarCalculador() {
   var salida = salidaEl ? salidaEl.value : '';
   var habitaciones = habEl ? parseInt(habEl.value) : 1;
 
-  if (!entrada || !salida) return { noches: 0, habitaciones: habitaciones, total: 0, cantidad: 0 };
+  if (!entrada || !salida) return { noches: 0, habitaciones: habitaciones, total: 0, cantidad: 0, entrada: entrada, salida: salida };
 
   var noches = calcularNoches(entrada, salida);
   var cantidad = noches * habitaciones;
@@ -55,12 +48,14 @@ function actualizarCalculador() {
   return { noches: noches, habitaciones: habitaciones, total: total, cantidad: cantidad, entrada: entrada, salida: salida };
 }
 
-// --- Checkout con Stripe.js directo ---
+// --- Checkout via servidor Node.js ---
 async function handleCheckout() {
   var calc = actualizarCalculador();
   var noches = calc.noches;
-  var cantidad = calc.cantidad;
+  var habitaciones = calc.habitaciones;
   var total = calc.total;
+  var entrada = calc.entrada;
+  var salida = calc.salida;
 
   var nombreEl = document.getElementById('nombre');
   var emailEl = document.getElementById('email');
@@ -89,29 +84,34 @@ async function handleCheckout() {
   btn.disabled = true;
 
   try {
-    // cantidad = noches × habitaciones
-    // Cada unidad del price_id = 1 noche × 1 habitación = €249
-    var result = await stripe.redirectToCheckout({
-      lineItems: [
-        {
-          price: STRIPE_PRICE_ID,
-          quantity: cantidad
-        }
-      ],
-      mode: 'payment',
-      customerEmail: email,
-      successUrl: SUCCESS_URL + '?session_id={CHECKOUT_SESSION_ID}',
-      cancelUrl: CANCEL_URL
+    var response = await fetch(CHECKOUT_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        noches: noches,
+        habitaciones: habitaciones,
+        email: email,
+        nombre: nombre,
+        telefono: telefono,
+        fecha_entrada: entrada,
+        fecha_salida: salida,
+        success_url: 'https://landinghoteles-istanbul-landing.hqsa3i.easypanel.host/thank-you.html',
+        cancel_url: 'https://landinghoteles-istanbul-landing.hqsa3i.easypanel.host/'
+      })
     });
 
-    if (result.error) {
-      throw new Error(result.error.message);
+    var data = await response.json();
+
+    if (data.checkout_url) {
+      window.location.href = data.checkout_url;
+    } else {
+      throw new Error(data.error || 'Error al crear la sesi\u00F3n de pago');
     }
 
   } catch (error) {
     btn.textContent = 'Reservar ahora \u2014 \u20AC' + total.toLocaleString('es-ES');
     btn.disabled = false;
-    alert('Error: ' + error.message);
+    alert('Error: ' + error.message + '\nContactanos: info@blocktravelagency.com');
   }
 }
 
