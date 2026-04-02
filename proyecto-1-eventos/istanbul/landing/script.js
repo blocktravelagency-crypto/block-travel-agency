@@ -35,8 +35,8 @@
             price_id: 'price_1THlpNRidwmiNfVGgeNeLfOz',
             quantity: 3,
             evento: 'istanbul',
-            success_url: window.location.origin + '/thank-you.html',
-            cancel_url: window.location.href
+            success_url: 'https://blocktravelagency-crypto.github.io/block-travel-agency/proyecto-1-eventos/istanbul/landing/thank-you.html',
+            cancel_url: 'https://blocktravelagency-crypto.github.io/block-travel-agency/proyecto-1-eventos/istanbul/landing/index.html'
           })
         }
       );

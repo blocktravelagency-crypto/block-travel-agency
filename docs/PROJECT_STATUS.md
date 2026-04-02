@@ -1,6 +1,6 @@
 # Estado del Proyecto — BlockTravel Hoteles
 
-**Última actualización:** 2026-04-01
+**Última actualización:** 2026-04-02
 
 ## Estado General: EN DESARROLLO — Fase 1
 
@@ -17,8 +17,10 @@ El proyecto se encuentra en la fase de configuración de infraestructura y desar
 | 3 | CLAUDE.md maestro definitivo | ✅ Completado | `d19fdbf` |
 | 4 | System prompts definitivos de cada agente | ✅ Completado | Ver tabla abajo |
 | 5 | Workflows n8n via MCP | ✅ Completado | Este commit |
-| 6 | Landing Istanbul | ⬜ Pendiente | — |
-| 7 | Campaña Meta Ads Istanbul | ⬜ Pendiente | — |
+| 6 | Landing Istanbul | ✅ Completado | `909b0cd` |
+| 7 | Deploy landing Istanbul | 🔶 Bloqueado (repo privado) | — |
+| 8 | Workflow Stripe n8n | ✅ Completado | WF-004 `k5aFhcuyg6TJ43MV` |
+| 9 | Campaña Meta Ads Istanbul | ⬜ Pendiente | — |
 
 ### Paso 4 — System Prompts Definitivos (COMPLETADO)
 
@@ -49,18 +51,18 @@ El proyecto se encuentra en la fase de configuración de infraestructura y desar
 | System prompts agentes | Completado | 100% |
 | Knowledge base MKT | Completado | 100% |
 | Infraestructura n8n | Completado | 100% |
-| Landing Istanbul | Pendiente | 0% |
+| Landing Istanbul | Completado | 100% |
 | Landing Consensus | Pendiente | 0% |
 | Meta Ads — Istanbul | Pendiente | 0% |
 | Meta Ads — Consensus | Pendiente | 0% |
-| Stripe (pagos) | Fase 2 | 0% |
+| Stripe (pagos) | WF activo, credencial pendiente | 50% |
 
 ### Bloqueantes Activos
 
-1. **Precio base Istanbul** — Consultar Booking/Expedia para el periodo del evento y confirmar rango publicable (IBott + Pricing Agent)
-2. **Cuenta Meta Business Manager** — Crear cuenta y verificar, puede tomar 24-48h (IBott manual)
-3. **Dominios registrados** — istanbulblockchaintravel.com + consensusmiamitravel.com ~€10 c/u (IBott manual)
-4. **N8N_API_KEY** — Generar en n8n UI → Settings → API → Create API Key (IBott manual)
+1. **Repo público para GitHub Pages** — El repo es privado, GitHub Pages gratis solo funciona con repos públicos. No hay secretos en git history (.env en .gitignore). Acción: Settings → Danger Zone → Change visibility → Public (IBott manual)
+2. **Credencial Stripe en n8n** — Crear HTTP Header Auth en n8n UI → Credentials → New → Header Auth → Name: `Authorization` Value: `Bearer STRIPE_SECRET_KEY` → Asignar al nodo "Stripe Create Session" de WF-004 (IBott manual)
+3. **Cuenta Meta Business Manager** — Crear cuenta y verificar, puede tomar 24-48h (IBott manual)
+4. **Dominios registrados** — istanbulblockchaintravel.com + consensusmiamitravel.com ~€10 c/u (IBott manual)
 
 ### Paso 5 — Workflows n8n (COMPLETADO)
 

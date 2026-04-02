@@ -9,6 +9,7 @@
 | 1 | BTA-leads-capture | `GW9Ha85CU0eAY7lt` | `https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-leads` | Activo | 2026-04-01 |
 | 2 | BTA-backup-diario | `XA8dOnlvRZikpB0P` | N/A (Schedule: 23:00 Europe/Madrid) | Activo | 2026-04-01 |
 | 3 | BTA-alerta-escala | `1kDNcdfzUV9ozs7D` | `https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-alertas` | Activo | 2026-04-01 |
+| 4 | BTA-stripe-checkout | `k5aFhcuyg6TJ43MV` | `https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-stripe-checkout` | Activo | 2026-04-02 |
 
 ## Descripción de Workflows
 
@@ -30,6 +31,13 @@
 - **Payload esperado:** `{ tipo_alerta, evento, metricas, accion_recomendada, email_destino }`
 - **Credenciales requeridas en n8n:** Resend API Key (HTTP Header Auth)
 
+### WF-004: BTA-stripe-checkout
+- **Trigger:** Webhook POST `/bta-stripe-checkout`
+- **Flujo:** Webhook → HTTP Request (Stripe API: crear Checkout Session) → Respond to Webhook con `{ checkout_url }`
+- **Payload esperado:** `{ price_id, quantity, evento, success_url, cancel_url }`
+- **Credenciales requeridas en n8n:** HTTP Header Auth con `Authorization: Bearer {STRIPE_SECRET_KEY}`
+- **Nota:** La credencial debe crearse manualmente en n8n UI y asignarse al nodo "Stripe Create Session"
+
 ## Configuración Pendiente en n8n UI
 
 1. **Google Sheets OAuth2** — Configurar credencial en n8n para que WF-001 pueda escribir en Sheets
@@ -38,6 +46,7 @@
 4. **GOOGLE_SHEETS_ID** — Definir como variable de entorno en n8n (Settings → Variables)
 5. **IBOTT_EMAIL** — Definir como variable de entorno en n8n para recibir alertas
 6. **Directorio git en servidor** — Configurar ruta del repo en el nodo Execute Command de WF-002
+7. **Stripe API Key** — Crear credencial HTTP Header Auth: Name `Authorization`, Value `Bearer sk_test_...` para WF-004
 
 ## Fallback
 
