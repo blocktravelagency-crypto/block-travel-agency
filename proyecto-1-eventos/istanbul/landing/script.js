@@ -1,71 +1,20 @@
 /* ============================================
    BlockTravel Agency — Istanbul Blockchain Week 2026
-   Stripe Checkout + Lead webhook + Meta Pixel handlers
+   Stripe Payment Link + Lead webhook + Meta Pixel
    ============================================ */
 
-// --- Stripe Checkout ---
-async function handleCheckout() {
-  var btns = document.querySelectorAll('.btn-checkout');
-  btns.forEach(function (b) { b.textContent = 'Procesando...'; b.style.opacity = '0.7'; b.style.pointerEvents = 'none'; });
+// Stripe Payment Link directo — sin backend necesario
+// REEMPLAZAR con la URL real del Payment Link creado en dashboard.stripe.com
+var STRIPE_PAYMENT_LINK = 'PAYMENT_LINK_URL_AQUI';
 
+function handleCheckout() {
   // Track InitiateCheckout with Meta Pixel
   if (typeof fbq === 'function') {
     fbq('track', 'InitiateCheckout', { value: 747.00, currency: 'EUR' });
   }
 
-  try {
-    console.log('Iniciando checkout...');
-
-    var response = await fetch(
-      'https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-stripe-checkout',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          price_id: 'price_1THlpNRidwmiNfVGgeNeLfOz',
-          quantity: 3,
-          evento: 'istanbul',
-          success_url: 'https://blocktravelagency-crypto.github.io/block-travel-agency/proyecto-1-eventos/istanbul/landing/thank-you.html',
-          cancel_url: 'https://blocktravelagency-crypto.github.io/block-travel-agency/proyecto-1-eventos/istanbul/landing/index.html'
-        })
-      }
-    );
-
-    console.log('Response status:', response.status);
-    var text = await response.text();
-    console.log('Response text:', text);
-
-    if (!text || text.trim() === '') {
-      throw new Error('El servidor respondió vacío. Verificar workflow n8n y credencial Stripe.');
-    }
-
-    var data;
-    try {
-      data = JSON.parse(text);
-    } catch (e) {
-      throw new Error('Respuesta no es JSON válido: ' + text.substring(0, 100));
-    }
-
-    console.log('Data recibida:', data);
-
-    if (!data.checkout_url) {
-      throw new Error('No se recibió checkout_url. Respuesta: ' + JSON.stringify(data));
-    }
-
-    window.location.href = data.checkout_url;
-
-  } catch (error) {
-    console.error('Error en checkout:', error.message);
-    btns.forEach(function (b) {
-      b.textContent = 'Reservar ahora — €747';
-      b.style.opacity = '1';
-      b.style.pointerEvents = 'auto';
-    });
-    alert('Error al procesar el pago: ' + error.message + '\n\nPor favor intentá de nuevo o escribinos a info@blocktravelagency.com');
-  }
+  // Redirigir directo al Payment Link de Stripe
+  window.location.href = STRIPE_PAYMENT_LINK;
 }
 
 // Asignar evento a todos los botones de checkout
