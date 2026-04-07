@@ -3,7 +3,7 @@
 // Stripe Checkout via servidor Node.js — precio dinámico
 // ============================================================
 
-var CHECKOUT_API = 'https://landinghoteles-stripe-server.hqsa3i.easypanel.host/create-checkout';
+const CHECKOUT_API = 'https://plain-sea-6b2d.blocktravelagency.workers.dev';
 var PRECIO_POR_NOCHE = 249;
 
 // --- Calculador ---
