@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel Istanbul Blockchain Week 2026 — BlockTravel Agency</title>
-  <meta name="description" content="Reservá tu hotel para Istanbul Blockchain Week 2026. Desde €249/noche con desayuno. Elegí tus fechas y pagá seguro online. Plazas limitadas.">
+  <meta name="description" content="Reservá tu hotel para Istanbul Blockchain Week 2026. Hilton Istanbul Bomonti desde €249/noche con desayuno. Plazas limitadas.">
 
   <!-- OG Tags -->
   <meta property="og:title" content="Hotel Istanbul Blockchain Week 2026 — BlockTravel Agency">
-  <meta property="og:description" content="Reservá tu hotel para Istanbul Blockchain Week 2026. 3 noches con desayuno desde €747. Pago seguro online. Plazas limitadas.">
+  <meta property="og:description" content="Hilton Istanbul Bomonti. Desde €249/noche con desayuno. Pago seguro online. Plazas limitadas.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="BlockTravel Agency">
@@ -17,8 +17,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css">
 
   <!-- Stripe.js -->
   <script src="https://js.stripe.com/v3/"></script>
@@ -39,6 +37,440 @@
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=1272242170945366&ev=PageView&noscript=1"
   /></noscript>
+
+  <style>
+    /* ============================================
+       Reset & Base
+       ============================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 300;
+      color: #262328;
+      background: #F5F5F5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ============================================
+       Navbar
+       ============================================ */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid #E2E2E2;
+    }
+
+    .navbar__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar__logo img {
+      width: 110px;
+      min-width: 110px;
+    }
+
+    .navbar .btn {
+      font-size: 0.875rem;
+      padding: 10px 20px;
+    }
+
+    /* ============================================
+       Buttons
+       ============================================ */
+    .btn {
+      display: inline-block;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      text-align: center;
+    }
+
+    .btn:hover {
+      opacity: 0.88;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn--primary {
+      background: #DDFE7E;
+      color: #262328;
+      border-color: #DDFE7E;
+    }
+
+    .btn--large {
+      font-size: 1.125rem;
+      padding: 18px 36px;
+      width: 100%;
+    }
+
+    /* ============================================
+       Hero — 2 columnas
+       ============================================ */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: calc(100vh - 57px);
+    }
+
+    /* --- Slider --- */
+    .hero__slider {
+      position: relative;
+      overflow: hidden;
+      min-height: 350px;
+    }
+
+    .slider__slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .slider__slide.active {
+      opacity: 1;
+    }
+
+    .slider__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slider__dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .slider__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .slider__dot.active {
+      background: #DDFE7E;
+    }
+
+    /* --- Card de reserva --- */
+    .hero__card {
+      background: #fff;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card__hotel-name {
+      font-weight: 900;
+      font-size: 1.75rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .card__event {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    .card__badge {
+      display: inline-block;
+      background: #DDFE7E;
+      color: #262328;
+      font-weight: 700;
+      font-size: 0.8125rem;
+      padding: 6px 14px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      align-self: flex-start;
+    }
+
+    .card__includes {
+      font-size: 0.9rem;
+      color: #444;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .card__includes span {
+      display: inline-block;
+      margin-right: 16px;
+      white-space: nowrap;
+    }
+
+    .card__separator {
+      border: none;
+      border-top: 1px solid #E2E2E2;
+      margin: 0 0 24px;
+    }
+
+    /* --- Calculador dentro de la card --- */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .calc-grid--full {
+      grid-template-columns: 1fr;
+    }
+
+    .calc-field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      color: #262328;
+    }
+
+    .calc-field input,
+    .calc-field select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid #E2E2E2;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: #262328;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+
+    .calc-field input:focus,
+    .calc-field select:focus {
+      outline: none;
+      border-color: #262328;
+    }
+
+    .calc-result {
+      background: #262328;
+      color: #fff;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .calc-breakdown {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .calc-total {
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .calc-contacto {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .calc-contacto input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid #E2E2E2;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: #262328;
+    }
+
+    .calc-contacto input:focus {
+      outline: none;
+      border-color: #262328;
+    }
+
+    .calc-nota {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 12px;
+    }
+
+    /* ============================================
+       Features — 3 columnas
+       ============================================ */
+    .features {
+      background: #fff;
+      padding: 64px 24px;
+    }
+
+    .features__grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      text-align: center;
+    }
+
+    .feature {
+      padding: 24px;
+    }
+
+    .feature__icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .feature__title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .feature__text {
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* ============================================
+       Footer
+       ============================================ */
+    .footer {
+      background: #262328;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .footer__logo {
+      width: 120px;
+      margin: 0 auto 16px;
+    }
+
+    .footer__email {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 12px;
+    }
+
+    .footer__copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ============================================
+       Desktop (768px+)
+       ============================================ */
+    @media (min-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero__slider {
+        min-height: auto;
+      }
+
+      .hero__card {
+        padding: 48px 40px;
+      }
+
+      .card__hotel-name {
+        font-size: 2rem;
+      }
+
+      .features__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .calc-contacto {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ============================================
+       Large desktop (1024px+)
+       ============================================ */
+    @media (min-width: 1024px) {
+      .hero__card {
+        padding: 56px 48px;
+      }
+
+      .card__hotel-name {
+        font-size: 2.25rem;
+      }
+    }
+
+    /* ============================================
+       Mobile adjustments
+       ============================================ */
+    @media (max-width: 767px) {
+      .hero__slider {
+        min-height: 280px;
+      }
+
+      .hero__card {
+        padding: 32px 20px;
+      }
+
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .calc-result {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -48,215 +480,156 @@
       <a href="#" class="navbar__logo">
         <img src="assets/logo-black.png" alt="BlockTravel Agency" width="110">
       </a>
-      <a href="#calculador" class="btn btn--primary btn-checkout">Reservar ahora</a>
+      <a href="#calculador" class="btn btn--primary btn-checkout">Reservar</a>
     </div>
   </nav>
 
-  <!-- SECCIÓN 1 — HERO -->
-  <section class="hero" id="hero">
-    <div class="container">
-      <div class="hero__badge">⚡ Plazas limitadas — 30 Mayo al 6 Junio 2026</div>
-      <h1 class="hero__title">Tu hotel en Istanbul Blockchain Week — antes de que se agoten</h1>
-      <p class="hero__subtitle">Alojamiento con desayuno incluido. Desde €249/noche. Elegí tus fechas y pagá seguro online.</p>
-      <div class="hero__buttons">
-        <a href="#calculador" class="btn btn--dark btn-checkout">Reservar ahora — desde €249/noche</a>
-        <a href="#calculador" class="btn btn--outline">Calcular precio</a>
+  <!-- HERO — Slider + Card de reserva -->
+  <section class="hero" id="calculador">
+
+    <!-- Columna izquierda: Slider de fotos -->
+    <div class="hero__slider" id="slider">
+      <div class="slider__slide active">
+        <img src="assets/HOTEL HILTON.jpg" alt="Hilton Istanbul Bomonti — Exterior">
+      </div>
+      <div class="slider__slide">
+        <img src="assets/FOTO HABITACION HILTON.webp" alt="Hilton Istanbul Bomonti — Habitación">
+      </div>
+      <div class="slider__slide">
+        <img src="assets/habitacion hilton.jpg" alt="Hilton Istanbul Bomonti — Suite">
+      </div>
+      <div class="slider__slide">
+        <img src="assets/comida hilton.jpg" alt="Hilton Istanbul Bomonti — Desayuno">
+      </div>
+      <div class="slider__dots" id="slider-dots">
+        <button class="slider__dot active" data-index="0" aria-label="Foto 1"></button>
+        <button class="slider__dot" data-index="1" aria-label="Foto 2"></button>
+        <button class="slider__dot" data-index="2" aria-label="Foto 3"></button>
+        <button class="slider__dot" data-index="3" aria-label="Foto 4"></button>
+      </div>
+    </div>
+
+    <!-- Columna derecha: Card de reserva -->
+    <div class="hero__card">
+      <h1 class="card__hotel-name">Hilton Istanbul Bomonti Hotel & Conference Center</h1>
+      <p class="card__event">Istanbul Blockchain Week 2026 · 30 Mayo — 6 Junio 2026</p>
+      <span class="card__badge">⚡ Plazas limitadas</span>
+      <p class="card__includes">
+        <span>✓ Desayuno incluido</span>
+        <span>✓ Zona del evento</span>
+        <span>✓ Precio fijo garantizado</span>
+      </p>
+      <hr class="card__separator">
+
+      <!-- Calculador -->
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label for="fecha-entrada">Fecha de entrada</label>
+          <input type="date" id="fecha-entrada" min="2026-05-30" max="2026-06-05" value="2026-06-01">
+        </div>
+        <div class="calc-field">
+          <label for="fecha-salida">Fecha de salida</label>
+          <input type="date" id="fecha-salida" min="2026-05-31" max="2026-06-06" value="2026-06-04">
+        </div>
+      </div>
+      <div class="calc-grid calc-grid--full">
+        <div class="calc-field">
+          <label for="habitaciones">Habitaciones</label>
+          <select id="habitaciones">
+            <option value="1">1 habitación</option>
+            <option value="2">2 habitaciones</option>
+            <option value="3">3 habitaciones</option>
+            <option value="4">4 habitaciones</option>
+            <option value="5">5 habitaciones</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Resumen -->
+      <div class="calc-result">
+        <div class="calc-breakdown">
+          <span id="calc-noches">3</span> noches ×
+          <span id="calc-hab">1</span> hab ×
+          €249/noche
+        </div>
+        <div class="calc-total">
+          Total: <strong id="calc-precio">€747</strong>
+        </div>
+      </div>
+
+      <!-- Contacto -->
+      <div class="calc-contacto">
+        <input type="text" id="nombre" placeholder="Nombre completo" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="telefono" placeholder="Teléfono (con código de país)" required>
+      </div>
+
+      <!-- Botón -->
+      <button class="btn btn--primary btn--large" id="btn-reservar">
+        Reservar ahora — €747
+      </button>
+      <p class="calc-nota">🔒 Pago seguro con Stripe · Confirmación inmediata</p>
+    </div>
+  </section>
+
+  <!-- FEATURES — 3 columnas -->
+  <section class="features">
+    <div class="features__grid">
+      <div class="feature">
+        <div class="feature__icon">📍</div>
+        <h3 class="feature__title">A pasos del venue</h3>
+        <p class="feature__text">Zona Bomonti, Istanbul</p>
+      </div>
+      <div class="feature">
+        <div class="feature__icon">🏨</div>
+        <h3 class="feature__title">Desayuno incluido</h3>
+        <p class="feature__text">Todas las mañanas en el hotel</p>
+      </div>
+      <div class="feature">
+        <div class="feature__icon">💳</div>
+        <h3 class="feature__title">Pago 100% seguro</h3>
+        <p class="feature__text">Procesado por Stripe</p>
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN 2 — PROBLEMA -->
-  <section class="problema" id="problema">
-    <div class="container">
-      <h2 class="section-title">¿Ya tenés el ticket pero no el hotel?</h2>
-      <div class="cards cards--3">
-        <div class="card">
-          <div class="card__icon">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="24" cy="24" r="23" stroke="#262328" stroke-width="2" stroke-dasharray="4 4"/>
-              <path d="M16 32V20l8-6 8 6v12H16z" stroke="#262328" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M21 32v-6h6v6" stroke="#262328" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <line x1="16" y1="18" x2="32" y2="18" stroke="#FC8865" stroke-width="2" stroke-dasharray="3 3"/>
-            </svg>
-          </div>
-          <p class="card__text">Los hoteles cerca del evento se agotan semanas antes</p>
-        </div>
-        <div class="card">
-          <div class="card__icon">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="24" cy="24" r="23" stroke="#262328" stroke-width="2" stroke-dasharray="4 4"/>
-              <path d="M18 30l3-8 3 4 3-6 3 10" stroke="#FC8865" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="22" y="22" font-size="12" fill="#262328" font-weight="700">x3</text>
-            </svg>
-          </div>
-          <p class="card__text">Los precios se multiplican x3 durante el evento</p>
-        </div>
-        <div class="card">
-          <div class="card__icon">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="24" cy="24" r="23" stroke="#262328" stroke-width="2" stroke-dasharray="4 4"/>
-              <circle cx="24" cy="22" r="6" stroke="#262328" stroke-width="2"/>
-              <path d="M20 28l-4 6h16l-4-6" stroke="#262328" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <line x1="24" y1="16" x2="24" y2="28" stroke="#FC8865" stroke-width="2" stroke-dasharray="2 2"/>
-            </svg>
-          </div>
-          <p class="card__text">Horas perdidas buscando en docenas de sitios</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN 3 — SOLUCIÓN -->
-  <section class="solucion" id="solucion">
-    <div class="container">
-      <h2 class="section-title">BlockTravel Agency lo resuelve por vos</h2>
-      <div class="cards cards--3">
-        <div class="card card--accent">
-          <div class="card__accent-bar"></div>
-          <p class="card__text">Reservas anticipadas con touroperador — precio fijo garantizado</p>
-        </div>
-        <div class="card card--accent">
-          <div class="card__accent-bar"></div>
-          <p class="card__text">Hoteles seleccionados a pasos del venue del evento</p>
-        </div>
-        <div class="card card--accent">
-          <div class="card__accent-bar"></div>
-          <p class="card__text">Desayuno incluido — sin sorpresas ni costos extra</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN 4 — CALCULADOR -->
-  <section class="precio" id="calculador">
-    <div class="container">
-      <div class="calculator">
-        <h2 class="calculator__title">Calculá tu reserva</h2>
-        <p class="calculator__subtitle">Istanbul Blockchain Week 2026 — 30 Mayo al 6 Junio 2026</p>
-
-        <div class="calc-grid">
-          <div class="calc-field">
-            <label for="fecha-entrada">Fecha de entrada</label>
-            <input type="date" id="fecha-entrada" min="2026-05-30" max="2026-06-05" value="2026-06-01">
-          </div>
-          <div class="calc-field">
-            <label for="fecha-salida">Fecha de salida</label>
-            <input type="date" id="fecha-salida" min="2026-05-31" max="2026-06-06" value="2026-06-04">
-          </div>
-          <div class="calc-field">
-            <label for="habitaciones">Habitaciones</label>
-            <select id="habitaciones">
-              <option value="1">1 habitación</option>
-              <option value="2">2 habitaciones</option>
-              <option value="3">3 habitaciones</option>
-              <option value="4">4 habitaciones</option>
-              <option value="5">5 habitaciones</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="calc-result">
-          <div class="calc-breakdown">
-            <span id="calc-noches">3</span> noches ×
-            <span id="calc-hab">1</span> hab ×
-            €249/noche
-          </div>
-          <div class="calc-total">
-            Total: <strong id="calc-precio">€747</strong>
-          </div>
-        </div>
-
-        <div class="calc-fields-contacto">
-          <input type="text" id="nombre" placeholder="Tu nombre completo" required>
-          <input type="email" id="email" placeholder="Tu email" required>
-          <input type="tel" id="telefono" placeholder="Teléfono (con código de país)" required>
-        </div>
-
-        <button class="btn btn--primary btn--large calculator__btn" id="btn-reservar">
-          Reservar ahora — <span id="btn-precio">€747</span>
-        </button>
-        <p class="calc-nota">Pago 100% seguro con Stripe. Confirmación inmediata por email.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN 5 — URGENCIA -->
-  <section class="urgencia" id="urgencia">
-    <div class="container">
-      <h2 class="section-title">Istanbul Blockchain Week 2026</h2>
-      <p class="urgencia__subtitle">1 al 4 de Junio 2026 — Istanbul, Turquía</p>
-      <p class="urgencia__text">Los asistentes al evento ya están reservando. Las plazas se asignan por orden de compra.</p>
-      <div class="urgencia__badge">⚡ Pocas habitaciones disponibles en la zona del evento</div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN 6 — PROCESO -->
-  <section class="proceso" id="proceso">
-    <div class="container">
-      <h2 class="section-title">¿Cómo funciona?</h2>
-      <div class="steps">
-        <div class="step">
-          <span class="step__number">1</span>
-          <h3 class="step__title">Elegí tus fechas</h3>
-          <p class="step__text">Seleccioná entrada, salida y habitaciones</p>
-        </div>
-        <div class="step">
-          <span class="step__number">2</span>
-          <h3 class="step__title">Pagá seguro con Stripe</h3>
-          <p class="step__text">El precio se calcula automáticamente</p>
-        </div>
-        <div class="step">
-          <span class="step__number">3</span>
-          <h3 class="step__title">Recibí confirmación</h3>
-          <p class="step__text">Email inmediato con los detalles de tu reserva</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN 7 — CONFIANZA -->
-  <section class="confianza" id="confianza">
-    <div class="container">
-      <div class="trust-items">
-        <div class="trust-item">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="12" y="18" width="16" height="12" rx="2" stroke="#262328" stroke-width="2"/>
-            <path d="M15 18v-4a5 5 0 0 1 10 0v4" stroke="#262328" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="20" cy="25" r="2" fill="#DDFE7E"/>
-          </svg>
-          <p class="trust-item__text">Pago 100% seguro — procesado por Stripe</p>
-        </div>
-        <div class="trust-item">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="20" r="12" stroke="#262328" stroke-width="2"/>
-            <path d="M15 20l3.5 3.5L25 16" stroke="#DDFE7E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <p class="trust-item__text">Confirmación inmediata por email</p>
-        </div>
-        <div class="trust-item">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="14" width="24" height="16" rx="2" stroke="#262328" stroke-width="2"/>
-            <path d="M8 20h24" stroke="#262328" stroke-width="2"/>
-            <circle cx="20" cy="10" r="3" stroke="#DDFE7E" stroke-width="2"/>
-          </svg>
-          <p class="trust-item__text">Especialistas en viajes a eventos Web3</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN 8 — CTA FINAL + FOOTER -->
-  <section class="cta-final" id="cta-final">
-    <div class="container">
-      <img src="assets/logo-white.png" alt="BlockTravel Agency" class="cta-final__logo" width="130">
-      <h2 class="cta-final__title">Asegurá tu hotel antes de que se agoten las plazas</h2>
-      <a href="#calculador" class="btn btn--primary btn--large btn-checkout">Reservar ahora — desde €249/noche</a>
-      <footer class="footer">
-        <p>© 2026 BlockTravel Agency · info@blocktravelagency.com</p>
-      </footer>
-    </div>
-  </section>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <img src="assets/logo-white.png" alt="BlockTravel Agency" class="footer__logo">
+    <p class="footer__email">info@blocktravelagency.com</p>
+    <p class="footer__copy">© 2026 BlockTravel Agency</p>
+  </footer>
 
   <script src="script.js"></script>
+
+  <!-- Slider JS -->
+  <script>
+  (function() {
+    var slides = document.querySelectorAll('.slider__slide');
+    var dots = document.querySelectorAll('.slider__dot');
+    var current = 0;
+    var total = slides.length;
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = index;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    // Auto-play cada 4 segundos
+    setInterval(function() {
+      goTo((current + 1) % total);
+    }, 4000);
+
+    // Dots clickeables
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        goTo(parseInt(this.dataset.index));
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
