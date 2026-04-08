@@ -48,6 +48,13 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -143,17 +150,18 @@
        Hero — 2 columnas
        ============================================ */
     .hero {
-      max-width: 1200px;
-      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr;
       min-height: calc(100vh - 57px);
+      height: calc(100vh - 57px);
+      overflow: hidden;
     }
 
     /* --- Slider --- */
     .hero__slider {
       position: relative;
       overflow: hidden;
+      height: 100%;
       min-height: 350px;
     }
 
@@ -205,6 +213,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      height: 100%;
+      overflow-y: auto;
     }
 
     .card__hotel-name {
@@ -415,7 +425,7 @@
       }
 
       .hero__slider {
-        min-height: auto;
+        min-height: 0;
       }
 
       .hero__card {
@@ -452,12 +462,20 @@
        Mobile adjustments
        ============================================ */
     @media (max-width: 767px) {
+      .hero {
+        height: auto;
+        overflow: visible;
+      }
+
       .hero__slider {
         min-height: 280px;
+        height: 280px;
       }
 
       .hero__card {
         padding: 32px 20px;
+        height: auto;
+        overflow-y: visible;
       }
 
       .calc-grid {
