@@ -39,66 +39,34 @@
   /></noscript>
 
   <style>
-    /* ============================================
-       Reset & Base
-       ============================================ */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
-      margin: 0;
-      padding: 0;
       height: 100%;
-      overflow-x: hidden;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
+      overflow: hidden;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       font-weight: 300;
       color: #262328;
       background: #F5F5F5;
-      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
 
     /* ============================================
        Navbar
        ============================================ */
     .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #fff;
-      border-bottom: 1px solid #E2E2E2;
       height: 56px;
-    }
-
-    .navbar__inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0.6rem 2rem;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 2rem;
+      background: white;
+      border-bottom: 1px solid #E2E2E2;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .navbar__logo img {
@@ -108,289 +76,215 @@
 
     .navbar .btn {
       font-size: 0.875rem;
-      padding: 10px 20px;
+      padding: 8px 18px;
     }
 
-    /* ============================================
-       Buttons
-       ============================================ */
     .btn {
       display: inline-block;
       font-family: inherit;
       font-weight: 700;
-      font-size: 1rem;
-      padding: 14px 28px;
-      border: 2px solid transparent;
+      border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.2s;
       text-align: center;
-    }
-
-    .btn:hover {
-      opacity: 0.88;
-    }
-
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .btn--primary {
       background: #DDFE7E;
       color: #262328;
-      border-color: #DDFE7E;
     }
-
-    .btn--large {
-      font-size: 0.95rem;
-      padding: 0.7rem;
-      width: 100%;
-    }
+    .btn:hover { opacity: 0.88; }
 
     /* ============================================
-       Hero — 2 columnas
+       Main — 1 columna vertical
        ============================================ */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .main {
       height: calc(100vh - 56px);
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
     }
 
-    /* --- Slider --- */
-    .hero__slider {
+    /* --- Carrusel arriba --- */
+    .slider-top {
+      height: 220px;
+      min-height: 220px;
       position: relative;
       overflow: hidden;
-      height: 100%;
+      flex-shrink: 0;
     }
 
-    .slider__slide {
+    .slide {
       position: absolute;
       width: 100%;
       height: 100%;
       opacity: 0;
       transition: opacity 0.8s ease;
     }
+    .slide.active { opacity: 1; }
 
-    .slider__slide.active {
-      opacity: 1;
-    }
-
-    .slider__slide img {
+    .slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
     }
 
-    .slider__dots {
+    .slider-dots {
       position: absolute;
-      bottom: 16px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 8px;
-      z-index: 2;
+      gap: 6px;
+      z-index: 10;
     }
 
-    .slider__dot {
-      width: 10px;
-      height: 10px;
+    .dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.6);
       border: none;
       cursor: pointer;
       transition: background 0.3s;
     }
+    .dot.active { background: white; }
 
-    .slider__dot.active {
-      background: #DDFE7E;
-    }
-
-    /* --- Card de reserva --- */
-    .hero__card {
-      background: #fff;
-      height: 100%;
+    /* --- Card de reserva abajo --- */
+    .booking-card {
+      flex: 1;
       overflow-y: auto;
-      padding: 1.5rem 2rem;
+      padding: 1.2rem 2rem;
+      background: white;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
+      max-width: 680px;
+      width: 100%;
+      margin: 0 auto;
     }
 
-    .card__hotel-name {
+    .hotel-name {
+      font-size: 1.2rem;
       font-weight: 900;
-      font-size: 1.3rem;
+      color: #262328;
       line-height: 1.2;
     }
 
-    .card__event {
-      font-weight: 400;
-      font-size: 0.8rem;
+    .hotel-subtitle {
+      font-size: 0.78rem;
       color: #666;
     }
 
-    .card__badge {
-      display: inline-block;
+    .badge-limitadas {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
       background: #DDFE7E;
       color: #262328;
-      font-weight: 700;
       font-size: 0.75rem;
-      padding: 0.2rem 0.8rem;
+      font-weight: 700;
+      padding: 0.2rem 0.7rem;
       border-radius: 4px;
-      align-self: flex-start;
+      width: fit-content;
     }
 
-    .card__includes {
-      font-size: 0.8rem;
+    .includes {
+      font-size: 0.78rem;
       color: #444;
-      margin: 0.3rem 0;
-      line-height: 1.6;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    .card__includes span {
-      display: inline-block;
-      margin-right: 12px;
-      white-space: nowrap;
+    .divider {
+      height: 1px;
+      background: #E2E2E2;
+      margin: 0.2rem 0;
     }
 
-    .card__separator {
-      border: none;
-      border-top: 1px solid #E2E2E2;
-      margin: 0;
-    }
-
-    /* --- Calculador dentro de la card --- */
-    .calc-grid {
+    .dates-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 0;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.8rem;
     }
 
-    .calc-grid--full {
-      grid-template-columns: 1fr;
-    }
-
-    .calc-field label {
-      display: block;
-      font-size: 0.72rem;
+    .field-label {
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 4px;
       color: #262328;
+      margin-bottom: 0.3rem;
     }
 
-    .calc-field input,
-    .calc-field select {
+    .field-input {
       width: 100%;
-      padding: 0.4rem 0.6rem;
-      border: 2px solid #E2E2E2;
-      border-radius: 8px;
+      padding: 0.45rem 0.7rem;
+      border: 1.5px solid #E2E2E2;
+      border-radius: 6px;
       font-size: 0.85rem;
       font-family: inherit;
       color: #262328;
-      background: #fff;
-      transition: border-color 0.2s;
+      background: white;
     }
-
-    .calc-field input:focus,
-    .calc-field select:focus {
+    .field-input:focus {
       outline: none;
       border-color: #262328;
     }
 
-    .calc-result {
+    .price-bar {
       background: #262328;
-      color: #fff;
-      border-radius: 8px;
+      color: white;
+      border-radius: 6px;
       padding: 0.6rem 1rem;
-      margin: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size: 0.82rem;
     }
-
-    .calc-breakdown {
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
-
-    .calc-total {
+    .price-bar strong {
       font-size: 1rem;
       font-weight: 900;
     }
 
-    .calc-contacto {
+    .contact-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 6px;
-      margin-bottom: 0;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.8rem;
     }
 
-    .calc-contacto input {
+    .btn-reservar {
       width: 100%;
-      padding: 0.4rem 0.8rem;
-      border: 2px solid #E2E2E2;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-family: inherit;
+      padding: 0.8rem;
+      background: #DDFE7E;
       color: #262328;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 900;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
+    .btn-reservar:hover { opacity: 0.9; }
+    .btn-reservar:disabled { opacity: 0.6; cursor: not-allowed; }
 
-    .calc-contacto input:focus {
-      outline: none;
-      border-color: #262328;
-    }
-
-    .calc-nota {
+    .secure-note {
+      font-size: 0.7rem;
+      color: #999;
       text-align: center;
-      font-size: 0.72rem;
-      color: #888;
-      margin-top: 0;
     }
 
     /* ============================================
-       Desktop (768px+)
+       Mobile
        ============================================ */
-    @media (min-width: 768px) {
-      .calc-contacto {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    /* ============================================
-       Mobile adjustments
-       ============================================ */
-    @media (max-width: 767px) {
-      .hero {
-        grid-template-columns: 1fr;
-        height: auto;
-        overflow: visible;
-      }
-
-      .hero__slider {
-        height: 250px;
-      }
-
-      .hero__card {
-        height: auto;
-        overflow-y: visible;
-        padding: 1.5rem;
-      }
-
-      .calc-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .calc-result {
-        flex-direction: column;
-        gap: 6px;
-        text-align: center;
-      }
+    @media (max-width: 768px) {
+      html, body { overflow: auto; }
+      .main { height: auto; overflow: visible; }
+      .slider-top { height: 200px; min-height: 200px; }
+      .booking-card { padding: 1rem; max-width: 100%; }
+      .dates-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -398,66 +292,62 @@
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
-    <div class="navbar__inner">
-      <a href="#" class="navbar__logo">
-        <img src="assets/logo-black.png" alt="BlockTravel Agency" width="110">
-      </a>
-      <a href="#calculador" class="btn btn--primary btn-checkout">Reservar</a>
-    </div>
+    <a href="#" class="navbar__logo">
+      <img src="assets/logo-black.png" alt="BlockTravel Agency" width="110">
+    </a>
+    <a href="#calculador" class="btn btn-checkout">Reservar</a>
   </nav>
 
-  <!-- HERO — Slider + Card de reserva -->
-  <section class="hero" id="calculador">
+  <!-- MAIN — Carrusel arriba + Card abajo -->
+  <main class="main" id="calculador">
 
-    <!-- Columna izquierda: Slider de fotos -->
-    <div class="hero__slider" id="slider">
-      <div class="slider__slide active">
+    <!-- Carrusel de fotos -->
+    <div class="slider-top" id="slider">
+      <div class="slide active">
         <img src="assets/HOTEL HILTON.jpg" alt="Hilton Istanbul Bomonti — Exterior">
       </div>
-      <div class="slider__slide">
+      <div class="slide">
         <img src="assets/FOTO HABITACION HILTON.webp" alt="Hilton Istanbul Bomonti — Habitación">
       </div>
-      <div class="slider__slide">
+      <div class="slide">
         <img src="assets/habitacion hilton.jpg" alt="Hilton Istanbul Bomonti — Suite">
       </div>
-      <div class="slider__slide">
+      <div class="slide">
         <img src="assets/comida hilton.jpg" alt="Hilton Istanbul Bomonti — Desayuno">
       </div>
-      <div class="slider__dots" id="slider-dots">
-        <button class="slider__dot active" data-index="0" aria-label="Foto 1"></button>
-        <button class="slider__dot" data-index="1" aria-label="Foto 2"></button>
-        <button class="slider__dot" data-index="2" aria-label="Foto 3"></button>
-        <button class="slider__dot" data-index="3" aria-label="Foto 4"></button>
+      <div class="slider-dots" id="slider-dots">
+        <button class="dot active" data-index="0" aria-label="Foto 1"></button>
+        <button class="dot" data-index="1" aria-label="Foto 2"></button>
+        <button class="dot" data-index="2" aria-label="Foto 3"></button>
+        <button class="dot" data-index="3" aria-label="Foto 4"></button>
       </div>
     </div>
 
-    <!-- Columna derecha: Card de reserva -->
-    <div class="hero__card">
-      <h1 class="card__hotel-name">Hilton Istanbul Bomonti Hotel & Conference Center</h1>
-      <p class="card__event">Istanbul Blockchain Week 2026 · 30 Mayo — 6 Junio 2026</p>
-      <span class="card__badge">⚡ Plazas limitadas</span>
-      <p class="card__includes">
+    <!-- Card de reserva -->
+    <div class="booking-card">
+      <h1 class="hotel-name">Hilton Istanbul Bomonti Hotel & Conference Center</h1>
+      <p class="hotel-subtitle">Istanbul Blockchain Week 2026 · 30 Mayo — 6 Junio 2026</p>
+      <span class="badge-limitadas">⚡ Plazas limitadas</span>
+      <div class="includes">
         <span>✓ Desayuno incluido</span>
         <span>✓ Zona del evento</span>
         <span>✓ Precio fijo garantizado</span>
-      </p>
-      <hr class="card__separator">
-
-      <!-- Calculador -->
-      <div class="calc-grid">
-        <div class="calc-field">
-          <label for="fecha-entrada">Fecha de entrada</label>
-          <input type="date" id="fecha-entrada" min="2026-05-30" max="2026-06-05" value="2026-06-01">
-        </div>
-        <div class="calc-field">
-          <label for="fecha-salida">Fecha de salida</label>
-          <input type="date" id="fecha-salida" min="2026-05-31" max="2026-06-06" value="2026-06-04">
-        </div>
       </div>
-      <div class="calc-grid calc-grid--full">
-        <div class="calc-field">
-          <label for="habitaciones">Habitaciones</label>
-          <select id="habitaciones">
+      <div class="divider"></div>
+
+      <!-- Fechas + Habitaciones en 3 columnas -->
+      <div class="dates-grid">
+        <div>
+          <div class="field-label">Fecha de entrada</div>
+          <input type="date" id="fecha-entrada" class="field-input" min="2026-05-30" max="2026-06-05" value="2026-06-01">
+        </div>
+        <div>
+          <div class="field-label">Fecha de salida</div>
+          <input type="date" id="fecha-salida" class="field-input" min="2026-05-31" max="2026-06-06" value="2026-06-04">
+        </div>
+        <div>
+          <div class="field-label">Habitaciones</div>
+          <select id="habitaciones" class="field-input">
             <option value="1">1 habitación</option>
             <option value="2">2 habitaciones</option>
             <option value="3">3 habitaciones</option>
@@ -467,41 +357,32 @@
         </div>
       </div>
 
-      <!-- Resumen -->
-      <div class="calc-result">
-        <div class="calc-breakdown">
-          <span id="calc-noches">3</span> noches ×
-          <span id="calc-hab">1</span> hab ×
-          €249/noche
-        </div>
-        <div class="calc-total">
-          Total: <strong id="calc-precio">€747</strong>
-        </div>
+      <!-- Barra de precio -->
+      <div class="price-bar">
+        <span><span id="calc-noches">3</span> noches × <span id="calc-hab">1</span> hab × €249/noche</span>
+        <strong>Total: <span id="calc-precio">€747</span></strong>
       </div>
 
-      <!-- Contacto -->
-      <div class="calc-contacto">
-        <input type="text" id="nombre" placeholder="Nombre completo" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="tel" id="telefono" placeholder="Teléfono (con código de país)" required>
+      <!-- Contacto en 3 columnas -->
+      <div class="contact-grid">
+        <input type="text" id="nombre" class="field-input" placeholder="Nombre completo" required>
+        <input type="email" id="email" class="field-input" placeholder="Email" required>
+        <input type="tel" id="telefono" class="field-input" placeholder="Teléfono (+código país)" required>
       </div>
 
       <!-- Botón -->
-      <button class="btn btn--primary btn--large" id="btn-reservar">
-        Reservar ahora — €747
-      </button>
-      <p class="calc-nota">🔒 Pago seguro con Stripe · Confirmación inmediata</p>
-      <p style="font-size:0.7rem; color:#999; text-align:center; margin-top:auto; padding-top:0.5rem">© 2026 BlockTravel Agency · info@blocktravelagency.com</p>
+      <button class="btn-reservar" id="btn-reservar">Reservar ahora — €747</button>
+      <p class="secure-note">🔒 Pago seguro con Stripe · Confirmación inmediata · © 2026 BlockTravel Agency</p>
     </div>
-  </section>
+  </main>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 
   <!-- Slider JS -->
   <script>
   (function() {
-    var slides = document.querySelectorAll('.slider__slide');
-    var dots = document.querySelectorAll('.slider__dot');
+    var slides = document.querySelectorAll('.slide');
+    var dots = document.querySelectorAll('.dot');
     var current = 0;
     var total = slides.length;
 
@@ -513,12 +394,10 @@
       dots[current].classList.add('active');
     }
 
-    // Auto-play cada 4 segundos
     setInterval(function() {
       goTo((current + 1) % total);
     }, 4000);
 
-    // Dots clickeables
     dots.forEach(function(dot) {
       dot.addEventListener('click', function() {
         goTo(parseInt(this.dataset.index));
