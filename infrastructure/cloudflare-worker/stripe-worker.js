@@ -6,11 +6,20 @@ async function handleRequest(request) {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Headers': 'Content-Type, X-API-Secret',
   }
 
   if (request.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders })
+  }
+
+  // Verificar API secret
+  const apiSecret = request.headers.get('X-API-Secret');
+  if (apiSecret !== API_SECRET) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
   }
 
   try {

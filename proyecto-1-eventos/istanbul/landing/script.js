@@ -86,7 +86,10 @@ async function handleCheckout() {
   try {
     var response = await fetch(CHECKOUT_API, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Secret': 'bta-2026-istanbul'
+      },
       body: JSON.stringify({
         noches: noches,
         habitaciones: habitaciones,
