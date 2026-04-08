@@ -59,13 +59,16 @@ async function handleCheckout() {
 
   var nombreEl = document.getElementById('nombre');
   var emailEl = document.getElementById('email');
-  var telefonoEl = document.getElementById('telefono');
+  var prefixEl = document.getElementById('phone-prefix');
+  var phoneNumEl = document.getElementById('phone-number');
 
   var nombre = nombreEl ? nombreEl.value.trim() : '';
   var email = emailEl ? emailEl.value.trim() : '';
-  var telefono = telefonoEl ? telefonoEl.value.trim() : '';
+  var prefix = prefixEl ? prefixEl.value : '';
+  var phoneNum = phoneNumEl ? phoneNumEl.value.trim() : '';
+  var telefono = prefix + phoneNum;
 
-  if (!nombre || !email || !telefono) {
+  if (!nombre || !email || !phoneNum) {
     alert('Por favor complet\u00E1 todos los campos: nombre, email y tel\u00E9fono.');
     return;
   }
