@@ -16,276 +16,80 @@
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Stripe.js -->
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            'primary-container': '#DDFE7E',
+            'on-primary-fixed': '#262328',
+            'surface': '#F5F5F5',
+            'on-surface': '#262328',
+            'outline': '#E2E2E2',
+            'muted': '#666',
+            'dark': '#262328',
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1272242170945366');fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1272242170945366&ev=PageView&noscript=1"/></noscript>
+
+  <!-- Stripe -->
   <script src="https://js.stripe.com/v3/"></script>
 
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1272242170945366');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1272242170945366&ev=PageView&noscript=1"
-  /></noscript>
+  <!-- Script landing -->
+  <script src="script.js" defer></script>
 
   <style>
-    /* ============================================
-       Reset & Base
-       ============================================ */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow-x: hidden;
-    }
+    /* Slider */
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; }
+    .slide.active { opacity: 1; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    /* Dot nav */
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; cursor: pointer; transition: background 0.3s; }
+    .dot.active { background: #DDFE7E; }
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      font-weight: 300;
-      color: #262328;
-      background: #F5F5F5;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* ============================================
-       Navbar
-       ============================================ */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #fff;
-      border-bottom: 1px solid #E2E2E2;
-    }
-
-    .navbar__inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .navbar__logo img {
-      width: 110px;
-      min-width: 110px;
-    }
-
-    .navbar .btn {
-      font-size: 0.875rem;
-      padding: 10px 20px;
-    }
-
-    /* ============================================
-       Buttons
-       ============================================ */
-    .btn {
-      display: inline-block;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 14px 28px;
-      border: 2px solid transparent;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: opacity 0.2s ease;
-      text-align: center;
-    }
-
-    .btn:hover {
-      opacity: 0.88;
-    }
-
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .btn--primary {
-      background: #DDFE7E;
-      color: #262328;
-      border-color: #DDFE7E;
-    }
-
-    .btn--large {
-      font-size: 1.125rem;
-      padding: 18px 36px;
-      width: 100%;
-    }
-
-    /* ============================================
-       Hero — 2 columnas
-       ============================================ */
-    .hero {
+    /* Gallery grid for desktop */
+    .gallery-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      min-height: calc(100vh - 57px);
-      height: calc(100vh - 57px);
-      overflow: hidden;
-    }
-
-    /* --- Slider --- */
-    .hero__slider {
-      position: relative;
-      overflow: hidden;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
       height: 100%;
-      min-height: 350px;
+    }
+    .gallery-grid .gallery-main { grid-row: 1 / 3; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Mobile: slider mode */
+    @media (max-width: 767px) {
+      .gallery-grid { display: none; }
+      .mobile-slider { display: block; }
+    }
+    @media (min-width: 768px) {
+      .mobile-slider { display: none; }
+      .gallery-grid { display: grid; }
     }
 
-    .slider__slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-
-    .slider__slide.active {
-      opacity: 1;
-    }
-
-    .slider__slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .slider__dots {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 2;
-    }
-
-    .slider__dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .slider__dot.active {
-      background: #DDFE7E;
-    }
-
-    /* --- Card de reserva --- */
-    .hero__card {
-      background: #fff;
-      padding: 40px 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 100%;
-      overflow-y: auto;
-    }
-
-    .card__hotel-name {
-      font-weight: 900;
-      font-size: 1.75rem;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-
-    .card__event {
-      font-weight: 400;
-      font-size: 0.95rem;
-      color: #666;
-      margin-bottom: 16px;
-    }
-
-    .card__badge {
-      display: inline-block;
-      background: #DDFE7E;
-      color: #262328;
-      font-weight: 700;
-      font-size: 0.8125rem;
-      padding: 6px 14px;
-      border-radius: 4px;
-      margin-bottom: 16px;
-      align-self: flex-start;
-    }
-
-    .card__includes {
-      font-size: 0.9rem;
-      color: #444;
-      margin-bottom: 20px;
-      line-height: 1.8;
-    }
-
-    .card__includes span {
-      display: inline-block;
-      margin-right: 16px;
-      white-space: nowrap;
-    }
-
-    .card__separator {
-      border: none;
-      border-top: 1px solid #E2E2E2;
-      margin: 0 0 24px;
-    }
-
-    /* --- Calculador dentro de la card --- */
-    .calc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .calc-grid--full {
-      grid-template-columns: 1fr;
-    }
-
-    .calc-field label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 6px;
-      color: #262328;
-    }
-
-    .calc-field input,
-    .calc-field select {
+    /* Form inputs consistent style */
+    .form-input {
       width: 100%;
       padding: 10px 12px;
       border: 2px solid #E2E2E2;
@@ -296,251 +100,135 @@
       background: #fff;
       transition: border-color 0.2s;
     }
-
-    .calc-field input:focus,
-    .calc-field select:focus {
-      outline: none;
-      border-color: #262328;
-    }
-
-    .calc-result {
-      background: #262328;
-      color: #fff;
-      border-radius: 8px;
-      padding: 14px 16px;
-      margin: 12px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .calc-breakdown {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    .calc-total {
-      font-size: 1.2rem;
-      font-weight: 900;
-    }
-
-    .calc-contacto {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .calc-contacto input {
-      width: 100%;
-      padding: 10px 12px;
-      border: 2px solid #E2E2E2;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: inherit;
-      color: #262328;
-    }
-
-    .calc-contacto input:focus {
-      outline: none;
-      border-color: #262328;
-    }
-
-    .calc-nota {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #888;
-      margin-top: 12px;
-    }
-
-    /* ============================================
-       Footer
-       ============================================ */
-    .footer {
-      background: #262328;
-      padding: 48px 24px;
-      text-align: center;
-    }
-
-    .footer__logo {
-      width: 120px;
-      margin: 0 auto 16px;
-    }
-
-    .footer__email {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 12px;
-    }
-
-    .footer__copy {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.35);
-    }
-
-    /* ============================================
-       Desktop (768px+)
-       ============================================ */
-    @media (min-width: 768px) {
-      .hero {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .hero__slider {
-        min-height: 0;
-      }
-
-      .hero__card {
-        padding: 48px 40px;
-      }
-
-      .card__hotel-name {
-        font-size: 2rem;
-      }
-
-      .calc-contacto {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    /* ============================================
-       Large desktop (1024px+)
-       ============================================ */
-    @media (min-width: 1024px) {
-      .hero__card {
-        padding: 56px 48px;
-      }
-
-      .card__hotel-name {
-        font-size: 2.25rem;
-      }
-    }
-
-    /* ============================================
-       Mobile adjustments
-       ============================================ */
-    @media (max-width: 767px) {
-      .hero {
-        height: auto;
-        overflow: visible;
-      }
-
-      .hero__slider {
-        min-height: 280px;
-        height: 280px;
-      }
-
-      .hero__card {
-        padding: 32px 20px;
-        height: auto;
-        overflow-y: visible;
-      }
-
-      .calc-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .calc-result {
-        flex-direction: column;
-        gap: 6px;
-        text-align: center;
-      }
-    }
+    .form-input:focus { outline: none; border-color: #262328; }
   </style>
 </head>
-<body>
+<body class="font-sans text-on-surface bg-surface">
 
   <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
-    <div class="navbar__inner">
-      <a href="#" class="navbar__logo">
-        <img src="assets/logo-black.png" alt="BlockTravel Agency" width="110">
+  <nav class="sticky top-0 z-50 bg-white border-b border-outline" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="#">
+        <img src="assets/logo-black.png" alt="BlockTravel" style="height:28px">
       </a>
-      <a href="#calculador" class="btn btn--primary btn-checkout">Reservar</a>
+      <a href="#calculador" class="btn-checkout bg-primary-container text-on-primary-fixed font-bold text-sm px-5 py-2.5 rounded-md hover:opacity-90 transition-opacity">
+        Reservar
+      </a>
     </div>
   </nav>
 
-  <!-- HERO — Slider + Card de reserva -->
-  <section class="hero" id="calculador">
+  <!-- HERO — Gallery + Booking Card -->
+  <section class="min-h-[calc(100vh-57px)] md:grid md:grid-cols-2" id="calculador">
 
-    <!-- Columna izquierda: Slider de fotos -->
-    <div class="hero__slider" id="slider">
-      <div class="slider__slide active">
-        <img src="assets/HOTEL HILTON.jpg" alt="Hilton Istanbul Bomonti — Exterior">
+    <!-- Left: Photo Gallery -->
+    <div class="relative overflow-hidden bg-gray-200 h-[300px] md:h-auto">
+
+      <!-- Mobile: Slider -->
+      <div class="mobile-slider relative h-full">
+        <div class="slide active">
+          <img src="assets/HOTEL HILTON.jpg" alt="Hilton Istanbul Bomonti — Exterior">
+        </div>
+        <div class="slide">
+          <img src="assets/FOTO HABITACION HILTON.webp" alt="Hilton Istanbul Bomonti — Habitación">
+        </div>
+        <div class="slide">
+          <img src="assets/habitacion hilton.jpg" alt="Hilton Istanbul Bomonti — Suite">
+        </div>
+        <div class="slide">
+          <img src="assets/comida hilton.jpg" alt="Hilton Istanbul Bomonti — Desayuno">
+        </div>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="slider-dots">
+          <button class="dot active" data-index="0" aria-label="Foto 1"></button>
+          <button class="dot" data-index="1" aria-label="Foto 2"></button>
+          <button class="dot" data-index="2" aria-label="Foto 3"></button>
+          <button class="dot" data-index="3" aria-label="Foto 4"></button>
+        </div>
       </div>
-      <div class="slider__slide">
-        <img src="assets/FOTO HABITACION HILTON.webp" alt="Hilton Istanbul Bomonti — Habitación">
-      </div>
-      <div class="slider__slide">
-        <img src="assets/habitacion hilton.jpg" alt="Hilton Istanbul Bomonti — Suite">
-      </div>
-      <div class="slider__slide">
-        <img src="assets/comida hilton.jpg" alt="Hilton Istanbul Bomonti — Desayuno">
-      </div>
-      <div class="slider__dots" id="slider-dots">
-        <button class="slider__dot active" data-index="0" aria-label="Foto 1"></button>
-        <button class="slider__dot" data-index="1" aria-label="Foto 2"></button>
-        <button class="slider__dot" data-index="2" aria-label="Foto 3"></button>
-        <button class="slider__dot" data-index="3" aria-label="Foto 4"></button>
+
+      <!-- Desktop: Gallery Grid -->
+      <div class="gallery-grid">
+        <div class="gallery-main">
+          <img src="assets/HOTEL HILTON.jpg" alt="Hilton Istanbul Bomonti — Exterior">
+        </div>
+        <div>
+          <img src="assets/FOTO HABITACION HILTON.webp" alt="Hilton Istanbul Bomonti — Habitación">
+        </div>
+        <div>
+          <img src="assets/habitacion hilton.jpg" alt="Hilton Istanbul Bomonti — Suite">
+        </div>
       </div>
     </div>
 
-    <!-- Columna derecha: Card de reserva -->
-    <div class="hero__card">
-      <h1 class="card__hotel-name">Hilton Istanbul Bomonti Hotel & Conference Center</h1>
-      <p class="card__event">Istanbul Blockchain Week 2026 · 30 Mayo — 6 Junio 2026</p>
-      <span class="card__badge">⚡ Plazas limitadas</span>
-      <p class="card__includes">
-        <span>✓ Desayuno incluido</span>
-        <span>✓ El hotel es sede del evento</span>
-        <span>✓ Precio fijo garantizado</span>
+    <!-- Right: Booking Card -->
+    <div class="bg-white px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14 flex flex-col justify-center overflow-y-auto">
+
+      <!-- Badge -->
+      <span class="inline-block self-start bg-primary-container text-on-primary-fixed font-bold text-xs px-3 py-1.5 rounded mb-4 tracking-wide">
+        Istanbul Blockchain Week 2026
+      </span>
+
+      <!-- Hotel name -->
+      <h1 class="font-black text-2xl md:text-3xl lg:text-4xl leading-tight mb-3">
+        Hilton Istanbul <br>Bomonti Hotel &<br><span class="text-muted">Conference Center</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-muted text-sm leading-relaxed mb-6">
+        El hotel sede del evento. Desayuno incluido, precio fijo garantizado y plazas limitadas para asistentes de Istanbul Blockchain Week.
       </p>
-      <hr class="card__separator">
 
-      <!-- Calculador -->
-      <div class="calc-grid">
-        <div class="calc-field">
-          <label for="fecha-entrada">Fecha de entrada</label>
-          <input type="date" id="fecha-entrada" min="2026-05-30" max="2026-06-05" value="2026-06-01">
-        </div>
-        <div class="calc-field">
-          <label for="fecha-salida">Fecha de salida</label>
-          <input type="date" id="fecha-salida" min="2026-05-31" max="2026-06-06" value="2026-06-04">
-        </div>
-      </div>
-      <div class="calc-grid calc-grid--full">
-        <div class="calc-field">
-          <label for="habitaciones">Habitaciones</label>
-          <select id="habitaciones">
-            <option value="1">1 habitación</option>
-            <option value="2">2 habitaciones</option>
-            <option value="3">3 habitaciones</option>
-            <option value="4">4 habitaciones</option>
-            <option value="5">5 habitaciones</option>
-          </select>
-        </div>
+      <!-- Includes -->
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600 mb-6">
+        <span>✓ Desayuno incluido</span>
+        <span>✓ Sede del evento</span>
+        <span>✓ Precio garantizado</span>
       </div>
 
-      <!-- Resumen -->
-      <div class="calc-result">
-        <div class="calc-breakdown">
-          <span id="calc-noches">3</span> noches ×
-          <span id="calc-hab">1</span> hab ×
-          €249/noche
+      <hr class="border-outline mb-6">
+
+      <!-- Title -->
+      <h2 class="font-bold text-lg mb-4">Reservar Estancia</h2>
+
+      <!-- Dates -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+        <div>
+          <label for="fecha-entrada" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Fecha de entrada</label>
+          <input type="date" id="fecha-entrada" min="2026-05-30" max="2026-06-05" value="2026-06-01" class="form-input">
         </div>
-        <div class="calc-total">
-          Total: <strong id="calc-precio">€747</strong>
+        <div>
+          <label for="fecha-salida" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Fecha de salida</label>
+          <input type="date" id="fecha-salida" min="2026-05-31" max="2026-06-06" value="2026-06-04" class="form-input">
         </div>
       </div>
 
-      <!-- Contacto -->
-      <div class="calc-contacto">
-        <input type="text" id="nombre" placeholder="Nombre completo" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <div class="calc-field" style="grid-column: span 1;">
-          <label class="field-label">TELÉFONO</label>
-          <div style="display:flex; gap:4px;">
-            <select id="phone-prefix" style="width:90px; padding:0.4rem 0.3rem; border:1.5px solid #E2E2E2; border-radius:6px; font-size:0.78rem; font-family:inherit; color:#262328; background:white; flex-shrink:0;">
+      <!-- Rooms -->
+      <div class="mb-4">
+        <label for="habitaciones" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Habitaciones</label>
+        <select id="habitaciones" class="form-input">
+          <option value="1">1 hab</option>
+          <option value="2">2 hab</option>
+          <option value="3">3 hab</option>
+          <option value="4">4 hab</option>
+          <option value="5">5 hab</option>
+        </select>
+      </div>
+
+      <!-- Price summary -->
+      <div class="bg-dark text-white rounded-lg px-4 py-3 mb-4">
+        <div class="flex justify-between text-sm">
+          <span><span id="calc-noches">3</span> noches × <span id="calc-hab">1</span> hab × €249/noche</span>
+          <span class="font-bold" id="calc-precio">€747</span>
+        </div>
+      </div>
+
+      <!-- Contact fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+        <input type="text" id="nombre" placeholder="Nombre completo" required class="form-input">
+        <input type="email" id="email" placeholder="Email" required class="form-input">
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-wider mb-1.5">Teléfono</label>
+          <div class="flex gap-1.5">
+            <select id="phone-prefix" class="form-input" style="width:95px; flex-shrink:0; font-size:0.8rem; padding:10px 6px;">
               <option value="+34">🇪🇸 +34</option>
               <option value="+54">🇦🇷 +54</option>
               <option value="+52">🇲🇽 +52</option>
@@ -555,39 +243,36 @@
               <option value="+49">🇩🇪 +49</option>
               <option value="+39">🇮🇹 +39</option>
               <option value="+31">🇳🇱 +31</option>
-              <option value="+41">🇨🇭 +41</option>
               <option value="+351">🇵🇹 +351</option>
               <option value="+90">🇹🇷 +90</option>
               <option value="+971">🇦🇪 +971</option>
             </select>
-            <input type="tel" id="phone-number" placeholder="600 000 000"
-              style="flex:1; padding:0.4rem 0.6rem; border:1.5px solid #E2E2E2; border-radius:6px; font-size:0.85rem; font-family:inherit; color:#262328;">
+            <input type="tel" id="phone-number" placeholder="600 000 000" class="form-input flex-1">
           </div>
         </div>
       </div>
 
-      <!-- Botón -->
-      <button class="btn btn--primary btn--large" id="btn-reservar">
+      <!-- Reserve button -->
+      <button id="btn-reservar" class="w-full bg-primary-container text-on-primary-fixed hover:opacity-90 transition-all py-5 rounded-xl font-black text-lg">
         Reservar ahora — €747
       </button>
-      <p class="calc-nota">🔒 Pago seguro con Stripe · Confirmación inmediata</p>
+
+      <p class="text-center text-xs text-gray-400 mt-3">🔒 Pago seguro con Stripe · Confirmación inmediata</p>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <img src="assets/logo-white.png" alt="BlockTravel Agency" class="footer__logo">
-    <p class="footer__email">info@blocktravelagency.com</p>
-    <p class="footer__copy">© 2026 BlockTravel Agency</p>
+  <footer class="bg-dark py-12 px-6 text-center">
+    <img src="assets/logo-white.png" alt="BlockTravel Agency" class="mx-auto mb-4" style="width:120px">
+    <p class="text-sm text-white/60 mb-2">info@blocktravelagency.com</p>
+    <p class="text-xs text-white/35">© 2026 BlockTravel Agency · info@blocktravelagency.com · Pago seguro con Stripe</p>
   </footer>
 
-  <script src="script.js"></script>
-
-  <!-- Slider JS -->
+  <!-- Slider JS (mobile) -->
   <script>
   (function() {
-    var slides = document.querySelectorAll('.slider__slide');
-    var dots = document.querySelectorAll('.slider__dot');
+    var slides = document.querySelectorAll('.slide');
+    var dots = document.querySelectorAll('.dot');
     var current = 0;
     var total = slides.length;
 
@@ -599,12 +284,10 @@
       dots[current].classList.add('active');
     }
 
-    // Auto-play cada 4 segundos
     setInterval(function() {
       goTo((current + 1) % total);
     }, 4000);
 
-    // Dots clickeables
     dots.forEach(function(dot) {
       dot.addEventListener('click', function() {
         goTo(parseInt(this.dataset.index));
