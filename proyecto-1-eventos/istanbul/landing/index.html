@@ -99,10 +99,6 @@ tailwind.config = {
 <nav class="fixed top-0 w-full z-50 bg-[#f6f6f6] shadow-none">
   <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
     <img src="assets/logo-black.png" alt="BlockTravel" style="height:28px">
-    <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary-fixed rounded-full">
-      <span class="material-symbols-outlined text-[16px]" style='font-variation-settings:"FILL" 1;'>bolt</span>
-      <span class="text-xs font-bold tracking-widest uppercase">Plazas limitadas</span>
-    </div>
   </div>
 </nav>
 
@@ -155,7 +151,13 @@ tailwind.config = {
     <!-- COLUMNA DERECHA: Booking Card -->
     <div class="lg:col-span-5 pb-12">
       <div id="calculador" class="bg-surface-container-lowest rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.04)] p-8 border border-outline-variant/15">
-        <h3 class="text-2xl font-bold mb-8">Reservar Estancia</h3>
+        <div class="flex items-center justify-between mb-8">
+          <h3 class="text-2xl font-bold">Reservar Estancia</h3>
+          <div class="inline-flex items-center gap-1 px-3 py-1 bg-primary-container text-on-primary-fixed rounded-full">
+            <span class="material-symbols-outlined text-[14px]" style='font-variation-settings:"FILL" 1;'>bolt</span>
+            <span class="text-xs font-bold tracking-widest uppercase">Plazas limitadas</span>
+          </div>
+        </div>
         <form class="space-y-5">
 
           <!-- Fechas -->
@@ -203,26 +205,32 @@ tailwind.config = {
               <div class="space-y-2">
                 <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Teléfono</label>
                 <div class="flex">
-                  <select id="phone-prefix"
-                    class="bg-surface-container-low border border-r-0 border-outline-variant/15 rounded-l-lg px-2 font-bold text-sm focus:border-primary focus:ring-0 outline-none">
-                    <option value="+34">🇪🇸 +34</option>
-                    <option value="+54">🇦🇷 +54</option>
-                    <option value="+52">🇲🇽 +52</option>
-                    <option value="+57">🇨🇴 +57</option>
-                    <option value="+56">🇨🇱 +56</option>
-                    <option value="+51">🇵🇪 +51</option>
-                    <option value="+55">🇧🇷 +55</option>
-                    <option value="+598">🇺🇾 +598</option>
-                    <option value="+1">🇺🇸 +1</option>
-                    <option value="+44">🇬🇧 +44</option>
-                    <option value="+33">🇫🇷 +33</option>
-                    <option value="+49">🇩🇪 +49</option>
-                    <option value="+39">🇮🇹 +39</option>
-                    <option value="+31">🇳🇱 +31</option>
-                    <option value="+351">🇵🇹 +351</option>
-                    <option value="+90">🇹🇷 +90</option>
-                    <option value="+971">🇦🇪 +971</option>
-                  </select>
+                  <div class="relative" style="width:120px; flex-shrink:0;">
+                    <input id="phone-prefix-search" type="text" placeholder="🇪🇸 ES"
+                      list="prefix-list"
+                      class="w-full bg-surface-container-low border border-r-0 border-outline-variant/15 rounded-l-lg py-4 px-3 font-bold text-sm focus:border-primary focus:ring-0 outline-none"
+                      style="height:100%;">
+                    <datalist id="prefix-list">
+                      <option value="🇪🇸 ES +34">España +34</option>
+                      <option value="🇦🇷 AR +54">Argentina +54</option>
+                      <option value="🇲🇽 MX +52">México +52</option>
+                      <option value="🇨🇴 CO +57">Colombia +57</option>
+                      <option value="🇨🇱 CL +56">Chile +56</option>
+                      <option value="🇵🇪 PE +51">Perú +51</option>
+                      <option value="🇧🇷 BR +55">Brasil +55</option>
+                      <option value="🇺🇾 UY +598">Uruguay +598</option>
+                      <option value="🇺🇸 US +1">Estados Unidos +1</option>
+                      <option value="🇬🇧 GB +44">Reino Unido +44</option>
+                      <option value="🇫🇷 FR +33">Francia +33</option>
+                      <option value="🇩🇪 DE +49">Alemania +49</option>
+                      <option value="🇮🇹 IT +39">Italia +39</option>
+                      <option value="🇳🇱 NL +31">Países Bajos +31</option>
+                      <option value="🇵🇹 PT +351">Portugal +351</option>
+                      <option value="🇹🇷 TR +90">Turquía +90</option>
+                      <option value="🇦🇪 AE +971">Emiratos +971</option>
+                    </datalist>
+                    <input type="hidden" id="phone-prefix" value="+34">
+                  </div>
                   <input id="phone-number" type="tel" placeholder="600 000 000"
                     class="w-full bg-surface-container-low border border-outline-variant/15 rounded-r-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none"/>
                 </div>
@@ -231,21 +239,21 @@ tailwind.config = {
           </div>
 
           <!-- Resumen precio -->
-          <div class="bg-inverse-surface py-6 px-6 rounded-xl space-y-3">
-            <div class="flex justify-between text-sm text-inverse-on-surface">
+          <div class="bg-surface-container py-6 px-6 rounded-xl space-y-3">
+            <div class="flex justify-between text-sm text-on-surface-variant">
               <span><span id="calc-noches">3</span> noches × <span id="calc-hab">1</span> hab × €249/noche</span>
-              <span class="font-bold text-surface-container-lowest" id="calc-precio">€747</span>
+              <span class="font-bold text-on-surface" id="calc-precio">€747</span>
             </div>
-            <div class="pt-3 border-t border-white/10 flex justify-between items-baseline">
-              <span class="text-inverse-on-surface font-bold">Total</span>
-              <span class="text-4xl font-black tracking-tight text-surface-container-lowest">€747</span>
+            <div class="pt-3 border-t border-black/10 flex justify-between items-baseline">
+              <span class="text-on-surface-variant font-bold">Total</span>
+              <span id="calc-total-display" class="text-4xl font-black tracking-tight text-on-surface">€747</span>
             </div>
           </div>
 
           <!-- CTA -->
           <button id="btn-reservar" type="button"
             class="w-full bg-primary-container text-on-primary-fixed hover:opacity-90 transition-all py-5 rounded-xl font-black text-lg shadow-[0_8px_24px_rgba(212,250,97,0.3)]">
-            Reservar ahora — €747
+            Reservar ahora
           </button>
 
           <!-- Trust markers -->
@@ -281,6 +289,25 @@ tailwind.config = {
   </div>
 </footer>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('phone-prefix-search');
+  const hiddenPrefix = document.getElementById('phone-prefix');
+  if (searchInput) {
+    searchInput.value = '🇪🇸 ES +34';
+    searchInput.addEventListener('change', function() {
+      const val = this.value;
+      const match = val.match(/\+\d+/);
+      if (match) hiddenPrefix.value = match[0];
+    });
+    searchInput.addEventListener('input', function() {
+      const val = this.value;
+      const match = val.match(/\+\d+/);
+      if (match) hiddenPrefix.value = match[0];
+    });
+  }
+});
+</script>
 <script src="script.js" defer></script>
 </body>
 </html>

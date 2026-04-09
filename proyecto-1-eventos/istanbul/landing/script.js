@@ -35,8 +35,11 @@ function actualizarCalculador() {
 
   var btnReservar = document.getElementById('btn-reservar');
   if (btnReservar && noches > 0) {
-    btnReservar.textContent = 'Reservar ahora \u2014 \u20AC' + total.toLocaleString('es-ES');
+    btnReservar.textContent = 'Reservar ahora';
   }
+
+  var totalDisplay = document.getElementById('calc-total-display');
+  if (totalDisplay) totalDisplay.textContent = '\u20AC' + total.toLocaleString('es-ES');
 
   var salidaInput = document.getElementById('fecha-salida');
   if (entrada && salidaInput) {
@@ -115,7 +118,7 @@ async function handleCheckout() {
     }
 
   } catch (error) {
-    btn.textContent = 'Reservar ahora \u2014 \u20AC' + total.toLocaleString('es-ES');
+    btn.textContent = 'Reservar ahora';
     btn.disabled = false;
     alert('Error: ' + error.message + '\nContactanos: info@blocktravelagency.com');
   }
