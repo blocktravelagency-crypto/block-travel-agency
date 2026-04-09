@@ -85,6 +85,24 @@ async function handleCheckout() {
     fbq('track', 'InitiateCheckout', { value: total, currency: 'EUR' });
   }
 
+  // Capturar lead en Google Sheets via n8n
+  fetch('https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-istanbul-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nombre: nombre,
+      email: email,
+      telefono: telefono,
+      fecha_entrada: entrada,
+      fecha_salida: salida,
+      noches: noches,
+      habitaciones: habitaciones,
+      total: total,
+      evento: 'istanbul',
+      timestamp: new Date().toISOString()
+    })
+  }).catch(function () {}); // Silencioso — no interrumpir el flujo de pago
+
   var btn = document.getElementById('btn-reservar');
   btn.textContent = 'Procesando...';
   btn.disabled = true;

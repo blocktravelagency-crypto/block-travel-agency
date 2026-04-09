@@ -10,6 +10,8 @@
 | 2 | BTA-backup-diario | `XA8dOnlvRZikpB0P` | N/A (Schedule: 23:00 Europe/Madrid) | Activo | 2026-04-01 |
 | 3 | BTA-alerta-escala | `1kDNcdfzUV9ozs7D` | `https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-alertas` | Activo | 2026-04-01 |
 | 4 | BTA-stripe-checkout | `k5aFhcuyg6TJ43MV` | `https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-stripe-checkout` | Activo | 2026-04-02 |
+| 5 | BTA-istanbul-lead-to-sheets | `82ZDmtkFFsSxcpEV` | `https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-istanbul-lead` | Activo | 2026-04-09 |
+| 6 | BTA-istanbul-payment-confirmed | `gl65Tj1FxRh7wG0z` | `https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-istanbul-payment-confirmed` | Activo | 2026-04-09 |
 
 ## Descripción de Workflows
 
@@ -37,6 +39,21 @@
 - **Payload esperado:** `{ price_id, quantity, evento, success_url, cancel_url }`
 - **Credenciales requeridas en n8n:** HTTP Header Auth con `Authorization: Bearer {STRIPE_SECRET_KEY}`
 - **Nota:** La credencial debe crearse manualmente en n8n UI y asignarse al nodo "Stripe Create Session"
+
+### WF-005: BTA-istanbul-lead-to-sheets
+- **Trigger:** Webhook POST `/bta-istanbul-lead`
+- **Flujo:** Webhook → Google Sheets Append (Hoja 1) → Respond 200 OK
+- **Columnas:** Timestamp, Nombre, Email, Teléfono, Fecha Entrada, Fecha Salida, Noches, Habitaciones, Total €, Estado (Lead), Stripe Session
+- **Sheet ID:** `1P3Colad67A6WT6dyIkQzeTgK8u2ZT9ylvQtLt7pcCYQ`
+- **Credenciales requeridas en n8n:** Google Sheets OAuth2 ("Google Sheets account")
+
+### WF-006: BTA-istanbul-payment-confirmed
+- **Trigger:** Webhook POST `/bta-istanbul-payment-confirmed`
+- **Flujo:** Webhook → Google Sheets Update (buscar por Email, actualizar Estado y Stripe Session) → Email notificación via Resend → Respond 200 OK
+- **Payload esperado:** `{ customer_email, customer_name, session_id, amount_total, payment_intent }`
+- **Destinatarios email:** ldebenedetti@blocktravelagency.com, ialberini@blocktravelagency.com
+- **Credenciales requeridas en n8n:** Google Sheets OAuth2, Resend API Key (HTTP Header Auth)
+- **Stripe Webhook:** Configurar en Stripe Dashboard → evento `checkout.session.completed` apuntando a la URL del webhook
 
 ## Configuración Pendiente en n8n UI
 

@@ -1,3 +1,7 @@
+// STRIPE WEBHOOK CONFIG:
+// Event: checkout.session.completed
+// URL: https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-istanbul-payment-confirmed
+
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
