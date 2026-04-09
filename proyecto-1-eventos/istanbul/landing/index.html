@@ -1,299 +1,286 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hotel Istanbul Blockchain Week 2026 — BlockTravel Agency</title>
-  <meta name="description" content="Reservá tu hotel para Istanbul Blockchain Week 2026. Hilton Istanbul Bomonti desde €249/noche con desayuno. Plazas limitadas.">
-
-  <!-- OG Tags -->
-  <meta property="og:title" content="Hotel Istanbul Blockchain Week 2026 — BlockTravel Agency">
-  <meta property="og:description" content="Hilton Istanbul Bomonti. Desde €249/noche con desayuno. Pago seguro online. Plazas limitadas.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="es_ES">
-  <meta property="og:site_name" content="BlockTravel Agency">
-
-  <!-- Google Fonts: Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-          },
-          colors: {
-            'primary-container': '#DDFE7E',
-            'on-primary-fixed': '#262328',
-            'surface': '#F5F5F5',
-            'on-surface': '#262328',
-            'outline': '#E2E2E2',
-            'muted': '#666',
-            'dark': '#262328',
-          },
-        },
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hotel Istanbul Blockchain Week 2026 — BlockTravel Agency</title>
+<meta name="description" content="Reservá tu hotel para Istanbul Blockchain Week 2026. Hilton Istanbul Bomonti. Desayuno incluido. Pago seguro online.">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1272242170945366');fbq('track','PageView');
+</script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "on-primary-fixed-variant": "#536900",
+        "outline": "#777777",
+        "on-secondary-fixed-variant": "#605e00",
+        "surface-dim": "#d4d4d4",
+        "on-surface-variant": "#5b5b5b",
+        "on-tertiary-fixed": "#463b00",
+        "primary-container": "#d4fa61",
+        "secondary": "#605e00",
+        "on-background": "#2f2f2f",
+        "tertiary": "#6a5b00",
+        "on-error": "#ffefec",
+        "surface-container": "#e8e8e8",
+        "on-tertiary-fixed-variant": "#665800",
+        "tertiary-dim": "#5c4f00",
+        "on-secondary-fixed": "#434100",
+        "on-secondary": "#fcf965",
+        "on-secondary-container": "#565400",
+        "secondary-container": "#ece856",
+        "inverse-surface": "#0e0e0e",
+        "error-dim": "#b92902",
+        "secondary-dim": "#545200",
+        "on-tertiary": "#fff3c5",
+        "on-primary": "#e1ff87",
+        "inverse-on-surface": "#9d9d9d",
+        "outline-variant": "#adadad",
+        "inverse-primary": "#d7fd64",
+        "on-error-container": "#520c00",
+        "surface-bright": "#f6f6f6",
+        "surface-variant": "#dddddd",
+        "primary": "#4e6300",
+        "on-surface": "#2f2f2f",
+        "surface-container-high": "#e2e2e2",
+        "surface-container-low": "#f1f1f1",
+        "tertiary-fixed-dim": "#eace37",
+        "error-container": "#f95630",
+        "primary-dim": "#445600",
+        "tertiary-fixed": "#f9dd44",
+        "surface-tint": "#4e6300",
+        "error": "#b02500",
+        "on-tertiary-container": "#5b4e00",
+        "surface-container-highest": "#dddddd",
+        "primary-fixed-dim": "#c6eb54",
+        "on-primary-container": "#4a5e00",
+        "primary-fixed": "#d4fa61",
+        "surface": "#f6f6f6",
+        "surface-container-lowest": "#ffffff",
+        "tertiary-container": "#f9dd44",
+        "secondary-fixed": "#ece856",
+        "background": "#f6f6f6",
+        "secondary-fixed-dim": "#ddda49",
+        "on-primary-fixed": "#3a4a00"
       },
+      borderRadius: {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      fontFamily: {
+        "headline": ["Inter"],
+        "body": ["Inter"],
+        "label": ["Inter"]
+      }
     }
-  </script>
-
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','1272242170945366');fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1272242170945366&ev=PageView&noscript=1"/></noscript>
-
-  <!-- Stripe -->
-  <script src="https://js.stripe.com/v3/"></script>
-
-  <!-- Script landing -->
-  <script src="script.js" defer></script>
-
-  <style>
-    html { scroll-behavior: smooth; }
-    body { -webkit-font-smoothing: antialiased; }
-
-    /* Slider */
-    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; }
-    .slide.active { opacity: 1; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* Dot nav */
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; cursor: pointer; transition: background 0.3s; }
-    .dot.active { background: #DDFE7E; }
-
-    /* Gallery grid for desktop */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 4px;
-      height: 100%;
-    }
-    .gallery-grid .gallery-main { grid-row: 1 / 3; }
-    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* Mobile: slider mode */
-    @media (max-width: 767px) {
-      .gallery-grid { display: none; }
-      .mobile-slider { display: block; }
-    }
-    @media (min-width: 768px) {
-      .mobile-slider { display: none; }
-      .gallery-grid { display: grid; }
-    }
-
-    /* Form inputs consistent style */
-    .form-input {
-      width: 100%;
-      padding: 10px 12px;
-      border: 2px solid #E2E2E2;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: inherit;
-      color: #262328;
-      background: #fff;
-      transition: border-color 0.2s;
-    }
-    .form-input:focus { outline: none; border-color: #262328; }
-  </style>
+  }
+}
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background-color: #f6f6f6; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .glass-panel { background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+</style>
 </head>
-<body class="font-sans text-on-surface bg-surface">
+<body class="text-on-surface">
 
-  <!-- NAVBAR -->
-  <nav class="sticky top-0 z-50 bg-white border-b border-outline" id="navbar">
-    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-      <a href="#">
-        <img src="assets/logo-black.png" alt="BlockTravel" style="height:28px">
-      </a>
-      <a href="#calculador" class="btn-checkout bg-primary-container text-on-primary-fixed font-bold text-sm px-5 py-2.5 rounded-md hover:opacity-90 transition-opacity">
-        Reservar
-      </a>
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 bg-[#f6f6f6] shadow-none">
+  <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+    <img src="assets/logo-black.png" alt="BlockTravel" style="height:28px">
+    <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary-fixed rounded-full">
+      <span class="material-symbols-outlined text-[16px]" style='font-variation-settings:"FILL" 1;'>bolt</span>
+      <span class="text-xs font-bold tracking-widest uppercase">Plazas limitadas</span>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- HERO — Gallery + Booking Card -->
-  <section class="min-h-[calc(100vh-57px)] md:grid md:grid-cols-2" id="calculador">
+<!-- MAIN -->
+<main class="pt-24 pb-0 px-6 max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
 
-    <!-- Left: Photo Gallery -->
-    <div class="relative overflow-hidden bg-gray-200 h-[300px] md:h-auto">
-
-      <!-- Mobile: Slider -->
-      <div class="mobile-slider relative h-full">
-        <div class="slide active">
-          <img src="assets/HOTEL HILTON.jpg" alt="Hilton Istanbul Bomonti — Exterior">
+    <!-- COLUMNA IZQUIERDA: Editorial + Galería -->
+    <div class="lg:col-span-7 pb-12">
+      <section>
+        <div class="mb-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary-container text-on-primary-fixed rounded-full mb-4">
+            <span class="material-symbols-outlined text-[18px]" style='font-variation-settings:"FILL" 1;'>event</span>
+            <span class="text-xs font-bold tracking-widest uppercase">Istanbul Blockchain Week 2026</span>
+          </div>
+          <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-none mb-6">
+            Hilton Istanbul<br/>Bomonti Hotel &<br/>
+            <span class="text-primary">Conference Center</span>
+          </h1>
+          <p class="text-on-surface-variant max-w-xl leading-relaxed">
+            El hotel es sede del evento. Desayuno incluido, precio fijo garantizado
+            y plazas limitadas para asistentes de Istanbul Blockchain Week 2026.
+            30 Mayo — 6 Junio 2026.
+          </p>
         </div>
-        <div class="slide">
-          <img src="assets/FOTO HABITACION HILTON.webp" alt="Hilton Istanbul Bomonti — Habitación">
-        </div>
-        <div class="slide">
-          <img src="assets/habitacion hilton.jpg" alt="Hilton Istanbul Bomonti — Suite">
-        </div>
-        <div class="slide">
-          <img src="assets/comida hilton.jpg" alt="Hilton Istanbul Bomonti — Desayuno">
-        </div>
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="slider-dots">
-          <button class="dot active" data-index="0" aria-label="Foto 1"></button>
-          <button class="dot" data-index="1" aria-label="Foto 2"></button>
-          <button class="dot" data-index="2" aria-label="Foto 3"></button>
-          <button class="dot" data-index="3" aria-label="Foto 4"></button>
-        </div>
-      </div>
 
-      <!-- Desktop: Gallery Grid -->
-      <div class="gallery-grid">
-        <div class="gallery-main">
-          <img src="assets/HOTEL HILTON.jpg" alt="Hilton Istanbul Bomonti — Exterior">
-        </div>
-        <div>
-          <img src="assets/FOTO HABITACION HILTON.webp" alt="Hilton Istanbul Bomonti — Habitación">
-        </div>
-        <div>
-          <img src="assets/habitacion hilton.jpg" alt="Hilton Istanbul Bomonti — Suite">
-        </div>
-      </div>
-    </div>
-
-    <!-- Right: Booking Card -->
-    <div class="bg-white px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14 flex flex-col justify-center overflow-y-auto">
-
-      <!-- Badge -->
-      <span class="inline-block self-start bg-primary-container text-on-primary-fixed font-bold text-xs px-3 py-1.5 rounded mb-4 tracking-wide">
-        Istanbul Blockchain Week 2026
-      </span>
-
-      <!-- Hotel name -->
-      <h1 class="font-black text-2xl md:text-3xl lg:text-4xl leading-tight mb-3">
-        Hilton Istanbul <br>Bomonti Hotel &<br><span class="text-muted">Conference Center</span>
-      </h1>
-
-      <!-- Description -->
-      <p class="text-muted text-sm leading-relaxed mb-6">
-        El hotel sede del evento. Desayuno incluido, precio fijo garantizado y plazas limitadas para asistentes de Istanbul Blockchain Week.
-      </p>
-
-      <!-- Includes -->
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600 mb-6">
-        <span>✓ Desayuno incluido</span>
-        <span>✓ Sede del evento</span>
-        <span>✓ Precio garantizado</span>
-      </div>
-
-      <hr class="border-outline mb-6">
-
-      <!-- Title -->
-      <h2 class="font-bold text-lg mb-4">Reservar Estancia</h2>
-
-      <!-- Dates -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-        <div>
-          <label for="fecha-entrada" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Fecha de entrada</label>
-          <input type="date" id="fecha-entrada" min="2026-05-30" max="2026-06-05" value="2026-06-01" class="form-input">
-        </div>
-        <div>
-          <label for="fecha-salida" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Fecha de salida</label>
-          <input type="date" id="fecha-salida" min="2026-05-31" max="2026-06-06" value="2026-06-04" class="form-input">
-        </div>
-      </div>
-
-      <!-- Rooms -->
-      <div class="mb-4">
-        <label for="habitaciones" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Habitaciones</label>
-        <select id="habitaciones" class="form-input">
-          <option value="1">1 hab</option>
-          <option value="2">2 hab</option>
-          <option value="3">3 hab</option>
-          <option value="4">4 hab</option>
-          <option value="5">5 hab</option>
-        </select>
-      </div>
-
-      <!-- Price summary -->
-      <div class="bg-dark text-white rounded-lg px-4 py-3 mb-4">
-        <div class="flex justify-between text-sm">
-          <span><span id="calc-noches">3</span> noches × <span id="calc-hab">1</span> hab × €249/noche</span>
-          <span class="font-bold" id="calc-precio">€747</span>
-        </div>
-      </div>
-
-      <!-- Contact fields -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-        <input type="text" id="nombre" placeholder="Nombre completo" required class="form-input">
-        <input type="email" id="email" placeholder="Email" required class="form-input">
-        <div class="sm:col-span-2">
-          <label class="block text-xs font-bold uppercase tracking-wider mb-1.5">Teléfono</label>
-          <div class="flex gap-1.5">
-            <select id="phone-prefix" class="form-input" style="width:95px; flex-shrink:0; font-size:0.8rem; padding:10px 6px;">
-              <option value="+34">🇪🇸 +34</option>
-              <option value="+54">🇦🇷 +54</option>
-              <option value="+52">🇲🇽 +52</option>
-              <option value="+57">🇨🇴 +57</option>
-              <option value="+56">🇨🇱 +56</option>
-              <option value="+51">🇵🇪 +51</option>
-              <option value="+55">🇧🇷 +55</option>
-              <option value="+598">🇺🇾 +598</option>
-              <option value="+1">🇺🇸 +1</option>
-              <option value="+44">🇬🇧 +44</option>
-              <option value="+33">🇫🇷 +33</option>
-              <option value="+49">🇩🇪 +49</option>
-              <option value="+39">🇮🇹 +39</option>
-              <option value="+31">🇳🇱 +31</option>
-              <option value="+351">🇵🇹 +351</option>
-              <option value="+90">🇹🇷 +90</option>
-              <option value="+971">🇦🇪 +971</option>
-            </select>
-            <input type="tel" id="phone-number" placeholder="600 000 000" class="form-input flex-1">
+        <!-- Galería Bento asimétrica -->
+        <div class="grid grid-cols-4 grid-rows-2 gap-4 h-[480px]">
+          <div class="col-span-4 row-span-1 rounded-xl overflow-hidden relative group">
+            <img src="assets/HOTEL HILTON.jpg" alt="Hilton Istanbul Bomonti exterior"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+          </div>
+          <div class="col-span-2 row-span-1 rounded-xl overflow-hidden group">
+            <img src="assets/FOTO HABITACION HILTON.webp" alt="Habitación Hilton"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+          </div>
+          <div class="col-span-1 row-span-1 rounded-xl overflow-hidden group">
+            <img src="assets/habitacion hilton.jpg" alt="Suite Hilton"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+          </div>
+          <div class="col-span-1 row-span-1 rounded-xl overflow-hidden group">
+            <img src="assets/comida hilton.jpg" alt="Desayuno Hilton"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
           </div>
         </div>
-      </div>
 
-      <!-- Reserve button -->
-      <button id="btn-reservar" class="w-full bg-primary-container text-on-primary-fixed hover:opacity-90 transition-all py-5 rounded-xl font-black text-lg">
-        Reservar ahora — €747
-      </button>
-
-      <p class="text-center text-xs text-gray-400 mt-3">🔒 Pago seguro con Stripe · Confirmación inmediata</p>
+      </section>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-dark py-12 px-6 text-center">
-    <img src="assets/logo-white.png" alt="BlockTravel Agency" class="mx-auto mb-4" style="width:120px">
-    <p class="text-sm text-white/60 mb-2">info@blocktravelagency.com</p>
-    <p class="text-xs text-white/35">© 2026 BlockTravel Agency · info@blocktravelagency.com · Pago seguro con Stripe</p>
-  </footer>
+    <!-- COLUMNA DERECHA: Booking Card -->
+    <div class="lg:col-span-5 pb-12">
+      <div id="calculador" class="bg-surface-container-lowest rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.04)] p-8 border border-outline-variant/15">
+        <h3 class="text-2xl font-bold mb-8">Reservar Estancia</h3>
+        <form class="space-y-5">
 
-  <!-- Slider JS (mobile) -->
-  <script>
-  (function() {
-    var slides = document.querySelectorAll('.slide');
-    var dots = document.querySelectorAll('.dot');
-    var current = 0;
-    var total = slides.length;
+          <!-- Fechas -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Entrada</label>
+              <input id="fecha-entrada" type="date"
+                min="2026-05-30" max="2026-06-05" value="2026-06-01"
+                class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none transition-all"/>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Salida</label>
+              <input id="fecha-salida" type="date"
+                min="2026-05-31" max="2026-06-06" value="2026-06-04"
+                class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none transition-all"/>
+            </div>
+          </div>
 
-    function goTo(index) {
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = index;
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-    }
+          <!-- Habitaciones -->
+          <div class="space-y-2">
+            <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Habitaciones</label>
+            <select id="habitaciones"
+              class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none appearance-none cursor-pointer">
+              <option value="1">1 habitación</option>
+              <option value="2">2 habitaciones</option>
+              <option value="3">3 habitaciones</option>
+              <option value="4">4 habitaciones</option>
+              <option value="5">5 habitaciones</option>
+            </select>
+          </div>
 
-    setInterval(function() {
-      goTo((current + 1) % total);
-    }, 4000);
+          <!-- Datos del huésped -->
+          <div class="space-y-4 pt-2">
+            <div class="space-y-2">
+              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Nombre Completo</label>
+              <input id="nombre" type="text" placeholder="Tu nombre completo"
+                class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none"/>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Email</label>
+                <input id="email" type="email" placeholder="tu@email.com"
+                  class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none"/>
+              </div>
+              <div class="space-y-2">
+                <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Teléfono</label>
+                <div class="flex">
+                  <select id="phone-prefix"
+                    class="bg-surface-container-low border border-r-0 border-outline-variant/15 rounded-l-lg px-2 font-bold text-sm focus:border-primary focus:ring-0 outline-none">
+                    <option value="+34">🇪🇸 +34</option>
+                    <option value="+54">🇦🇷 +54</option>
+                    <option value="+52">🇲🇽 +52</option>
+                    <option value="+57">🇨🇴 +57</option>
+                    <option value="+56">🇨🇱 +56</option>
+                    <option value="+51">🇵🇪 +51</option>
+                    <option value="+55">🇧🇷 +55</option>
+                    <option value="+598">🇺🇾 +598</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+44">🇬🇧 +44</option>
+                    <option value="+33">🇫🇷 +33</option>
+                    <option value="+49">🇩🇪 +49</option>
+                    <option value="+39">🇮🇹 +39</option>
+                    <option value="+31">🇳🇱 +31</option>
+                    <option value="+351">🇵🇹 +351</option>
+                    <option value="+90">🇹🇷 +90</option>
+                    <option value="+971">🇦🇪 +971</option>
+                  </select>
+                  <input id="phone-number" type="tel" placeholder="600 000 000"
+                    class="w-full bg-surface-container-low border border-outline-variant/15 rounded-r-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none"/>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    dots.forEach(function(dot) {
-      dot.addEventListener('click', function() {
-        goTo(parseInt(this.dataset.index));
-      });
-    });
-  })();
-  </script>
+          <!-- Resumen precio -->
+          <div class="bg-inverse-surface py-6 px-6 rounded-xl space-y-3">
+            <div class="flex justify-between text-sm text-inverse-on-surface">
+              <span><span id="calc-noches">3</span> noches × <span id="calc-hab">1</span> hab × €249/noche</span>
+              <span class="font-bold text-surface-container-lowest" id="calc-precio">€747</span>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex justify-between items-baseline">
+              <span class="text-inverse-on-surface font-bold">Total</span>
+              <span class="text-4xl font-black tracking-tight text-surface-container-lowest">€747</span>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <button id="btn-reservar" type="button"
+            class="w-full bg-primary-container text-on-primary-fixed hover:opacity-90 transition-all py-5 rounded-xl font-black text-lg shadow-[0_8px_24px_rgba(212,250,97,0.3)]">
+            Reservar ahora — €747
+          </button>
+
+          <!-- Trust markers -->
+          <div class="flex flex-col gap-3 pt-2">
+            <div class="flex items-center gap-3">
+              <div class="p-2 rounded-full bg-primary/10">
+                <span class="material-symbols-outlined text-primary text-[20px]" style='font-variation-settings:"FILL" 1;'>lock</span>
+              </div>
+              <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Pago seguro con Stripe</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="p-2 rounded-full bg-primary/10">
+                <span class="material-symbols-outlined text-primary text-[20px]" style='font-variation-settings:"FILL" 1;'>check_circle</span>
+              </div>
+              <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Confirmación inmediata por email</span>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-[#0e0e0e] w-full py-12">
+  <div class="flex flex-col items-center gap-4 px-8 text-center max-w-7xl mx-auto">
+    <img src="assets/logo-white.png" alt="BlockTravel" style="height:24px">
+    <p class="text-gray-400 text-xs tracking-wide uppercase">
+      © 2026 BlockTravel Agency · info@blocktravelagency.com · Pago seguro con Stripe
+    </p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
 </body>
 </html>
