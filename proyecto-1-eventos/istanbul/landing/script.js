@@ -75,6 +75,12 @@ async function handleCheckout() {
     alert('Por favor complet\u00E1 todos los campos: nombre, email y tel\u00E9fono.');
     return;
   }
+
+  var aceptoTerminos = document.getElementById('acepto-terminos');
+  if (!aceptoTerminos || !aceptoTerminos.checked) {
+    alert('Debes aceptar los Términos y Condiciones para continuar.');
+    return;
+  }
   if (noches === 0) {
     alert('La fecha de salida debe ser posterior a la fecha de entrada.');
     return;

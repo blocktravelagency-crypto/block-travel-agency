@@ -291,6 +291,34 @@ tailwind.config = {
             </div>
           </div>
 
+          <!-- Checkbox T&C -->
+          <div style="display:flex; align-items:flex-start; gap:0.6rem; margin-bottom:0.5rem;">
+            <input type="checkbox" id="acepto-terminos" style="
+              margin-top: 3px;
+              width: 16px;
+              height: 16px;
+              accent-color: #4e6300;
+              cursor: pointer;
+              flex-shrink: 0;
+            ">
+            <label for="acepto-terminos" style="
+              font-size: 0.75rem;
+              color: #5b5b5b;
+              cursor: pointer;
+              line-height: 1.4;
+            ">
+              He leído y acepto los
+              <a href="terminos.html" target="_blank" style="color:#4e6300; text-decoration:underline; font-weight:600;">
+                Términos y Condiciones
+              </a>
+              y la
+              <a href="privacidad.html" target="_blank" style="color:#4e6300; text-decoration:underline; font-weight:600;">
+                Política de Privacidad
+              </a>.
+              Entiendo que la reserva es no reembolsable.
+            </label>
+          </div>
+
           <!-- CTA -->
           <button id="btn-reservar" type="button"
             class="w-full bg-primary-container text-on-primary-fixed hover:opacity-90 transition-all py-5 rounded-xl font-black text-lg shadow-[0_8px_24px_rgba(212,250,97,0.3)]">
@@ -350,5 +378,71 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script src="script.js" defer></script>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #262328;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 9999;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  flex-wrap: wrap;
+">
+  <p style="margin:0; max-width:700px; line-height:1.5;">
+    Usamos cookies propias y de terceros (Meta Pixel, Stripe) para mejorar tu experiencia
+    y mostrarte publicidad relevante. Puedes aceptarlas o rechazarlas.
+    <a href="privacidad.html" style="color:#DDFE7E; text-decoration:underline;">
+      Más información
+    </a>
+  </p>
+  <div style="display:flex; gap:0.75rem; flex-shrink:0;">
+    <button onclick="rechazarCookies()" style="
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: inherit;
+    ">Rechazar</button>
+    <button onclick="aceptarCookies()" style="
+      background: #DDFE7E;
+      border: none;
+      color: #262328;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    ">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function aceptarCookies() {
+  localStorage.setItem('cookies_consent', 'accepted');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+function rechazarCookies() {
+  localStorage.setItem('cookies_consent', 'rejected');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+// Mostrar banner solo si no ha decidido antes
+if (localStorage.getItem('cookies_consent')) {
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+</script>
+
 </body>
 </html>
