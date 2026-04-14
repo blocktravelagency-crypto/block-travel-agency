@@ -444,5 +444,133 @@ if (localStorage.getItem('cookies_consent')) {
 }
 </script>
 
+<div id="payment-modal" style="
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+">
+  <div style="
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+  ">
+    <h3 style="font-size:1.3rem; font-weight:900; color:#262328; margin-bottom:0.5rem;">
+      ¿Cómo querés pagar?
+    </h3>
+    <p style="font-size:0.82rem; color:#5b5b5b; margin-bottom:2rem; line-height:1.5;">
+      Elegí tu método de pago preferido para completar la reserva.
+    </p>
+
+    <div style="display:flex; flex-direction:column; gap:0.75rem;">
+
+      <!-- FIAT -->
+      <button id="btn-fiat" style="
+        background: #DDFE7E;
+        color: #262328;
+        border: none;
+        border-radius: 8px;
+        padding: 1rem;
+        font-size: 0.95rem;
+        font-weight: 900;
+        cursor: pointer;
+        font-family: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: opacity 0.2s;
+      " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        💳 Pagar con tarjeta (Fiat)
+      </button>
+
+      <!-- CRYPTO -->
+      <button id="btn-crypto" style="
+        background: #262328;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 1rem;
+        font-size: 0.95rem;
+        font-weight: 900;
+        cursor: pointer;
+        font-family: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: opacity 0.2s;
+      " onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+        ₿ Pagar con Crypto
+      </button>
+
+      <!-- CANCELAR -->
+      <button id="btn-cancel-modal" style="
+        background: transparent;
+        color: #5b5b5b;
+        border: none;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+        font-family: inherit;
+        text-decoration: underline;
+      ">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var modal = document.getElementById('payment-modal');
+  var btnFiat = document.getElementById('btn-fiat');
+  var btnCrypto = document.getElementById('btn-crypto');
+  var btnCancel = document.getElementById('btn-cancel-modal');
+  var _checkoutCallback = null;
+
+  // Abrir modal
+  window.openPaymentModal = function(callback) {
+    _checkoutCallback = callback;
+    modal.style.display = 'flex';
+  };
+
+  // Fiat → ejecutar checkout original
+  btnFiat.addEventListener('click', function() {
+    modal.style.display = 'none';
+    if (_checkoutCallback) _checkoutCallback();
+  });
+
+  // Crypto → WhatsApp
+  btnCrypto.addEventListener('click', function() {
+    modal.style.display = 'none';
+    var msg = encodeURIComponent('Hola! Quiero reservar hotel para Istanbul Blockchain Week 2026 y pagar con crypto.');
+    window.open('https://wa.me/34637855676?text=' + msg, '_blank');
+  });
+
+  // Cancelar
+  btnCancel.addEventListener('click', function() {
+    modal.style.display = 'none';
+    _checkoutCallback = null;
+  });
+
+  // Cerrar al hacer click fuera
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      _checkoutCallback = null;
+    }
+  });
+})();
+</script>
+
 </body>
 </html>

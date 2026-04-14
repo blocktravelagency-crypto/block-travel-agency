@@ -161,7 +161,30 @@ document.addEventListener('DOMContentLoaded', function () {
   if (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
-      handleCheckout();
+      // Primero validar el formulario
+      var calc = actualizarCalculador();
+      var nombre = document.getElementById('nombre')?.value.trim();
+      var email = document.getElementById('email')?.value.trim();
+      var phoneNum = document.getElementById('phone-number')?.value.trim();
+      var aceptoTerminos = document.getElementById('acepto-terminos');
+      if (!nombre || !email || !phoneNum) {
+        alert('Por favor completá todos los campos: nombre, email y teléfono.');
+        return;
+      }
+      if (calc.noches === 0) {
+        alert('La fecha de salida debe ser posterior a la fecha de entrada.');
+        return;
+      }
+      if (!aceptoTerminos || !aceptoTerminos.checked) {
+        alert('Debes aceptar los Términos y Condiciones para continuar.');
+        return;
+      }
+      // Abrir modal de método de pago
+      if (typeof window.openPaymentModal === 'function') {
+        window.openPaymentModal(handleCheckout);
+      } else {
+        handleCheckout();
+      }
     });
   }
 
