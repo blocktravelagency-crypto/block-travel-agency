@@ -179,7 +179,29 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Debes aceptar los Términos y Condiciones para continuar.');
         return;
       }
-      // Abrir modal de método de pago
+      // Capturar lead ANTES de mostrar el modal de pago
+      var prefix = document.getElementById('phone-prefix')?.value || '+34';
+      var phoneNum2 = document.getElementById('phone-number')?.value.trim() || '';
+      var telefono = prefix + phoneNum2;
+
+      fetch('https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-istanbul-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre: nombre,
+          email: email,
+          telefono: telefono,
+          fecha_entrada: calc.entrada,
+          fecha_salida: calc.salida,
+          noches: calc.noches,
+          habitaciones: calc.habitaciones,
+          total: calc.total,
+          evento: 'istanbul',
+          timestamp: new Date().toISOString()
+        })
+      }).catch(function() {});
+
+      // Luego abrir el modal de método de pago
       if (typeof window.openPaymentModal === 'function') {
         window.openPaymentModal(handleCheckout);
       } else {
