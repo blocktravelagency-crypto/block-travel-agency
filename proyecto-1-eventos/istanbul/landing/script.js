@@ -35,7 +35,7 @@ function actualizarCalculador() {
 
   var btnReservar = document.getElementById('btn-reservar');
   if (btnReservar && noches > 0) {
-    btnReservar.textContent = 'Reservar ahora';
+    btnReservar.textContent = 'Book Now';
   }
 
   var totalDisplay = document.getElementById('calc-total-display');
@@ -72,17 +72,17 @@ async function handleCheckout() {
   var telefono = prefix + phoneNum;
 
   if (!nombre || !email || !phoneNum) {
-    alert('Por favor complet\u00E1 todos los campos: nombre, email y tel\u00E9fono.');
+    alert('Please fill in all fields: name, email and phone.');
     return;
   }
 
   var aceptoTerminos = document.getElementById('acepto-terminos');
   if (!aceptoTerminos || !aceptoTerminos.checked) {
-    alert('Debes aceptar los Términos y Condiciones para continuar.');
+    alert('You must accept the Terms & Conditions to continue.');
     return;
   }
   if (noches === 0) {
-    alert('La fecha de salida debe ser posterior a la fecha de entrada.');
+    alert('Check-out date must be after check-in date.');
     return;
   }
 
@@ -110,7 +110,7 @@ async function handleCheckout() {
   }).catch(function () {}); // Silencioso — no interrumpir el flujo de pago
 
   var btn = document.getElementById('btn-reservar');
-  btn.textContent = 'Procesando...';
+  btn.textContent = 'Processing...';
   btn.disabled = true;
 
   try {
@@ -142,9 +142,9 @@ async function handleCheckout() {
     }
 
   } catch (error) {
-    btn.textContent = 'Reservar ahora';
+    btn.textContent = 'Book Now';
     btn.disabled = false;
-    alert('Error: ' + error.message + '\nContactanos: info@blocktravelagency.com');
+    alert('Error: ' + error.message + '\nContact us: info@blocktravelagency.com');
   }
 }
 
@@ -168,15 +168,15 @@ document.addEventListener('DOMContentLoaded', function () {
       var phoneNum = document.getElementById('phone-number')?.value.trim();
       var aceptoTerminos = document.getElementById('acepto-terminos');
       if (!nombre || !email || !phoneNum) {
-        alert('Por favor completá todos los campos: nombre, email y teléfono.');
+        alert('Please fill in all fields: name, email and phone.');
         return;
       }
       if (calc.noches === 0) {
-        alert('La fecha de salida debe ser posterior a la fecha de entrada.');
+        alert('Check-out date must be after check-in date.');
         return;
       }
       if (!aceptoTerminos || !aceptoTerminos.checked) {
-        alert('Debes aceptar los Términos y Condiciones para continuar.');
+        alert('You must accept the Terms & Conditions to continue.');
         return;
       }
       // Capturar lead ANTES de mostrar el modal de pago

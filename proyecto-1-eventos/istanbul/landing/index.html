@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Hotel Istanbul Blockchain Week 2026 — BlockTravel Agency</title>
-<meta name="description" content="Reservá tu hotel para Istanbul Blockchain Week 2026. Hilton Istanbul Bomonti. Desayuno incluido. Pago seguro online.">
+<meta name="description" content="Book your hotel for Istanbul Blockchain Week 2026. Hilton Istanbul Bomonti. Breakfast included. Secure online payment.">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -119,9 +119,9 @@ tailwind.config = {
             <span class="text-primary">Conference Center</span>
           </h1>
           <p class="text-on-surface-variant max-w-xl leading-relaxed">
-            El hotel es sede del evento. Desayuno incluido, precio fijo garantizado
-            y plazas limitadas para asistentes de Istanbul Blockchain Week 2026.
-            30 Mayo — 6 Junio 2026.
+            The event venue hotel. Breakfast included, guaranteed fixed price
+            and limited spots for Istanbul Blockchain Week 2026 attendees.
+            May 30 — June 6, 2026.
           </p>
         </div>
 
@@ -152,10 +152,10 @@ tailwind.config = {
     <div class="lg:col-span-5 pb-12">
       <div id="calculador" class="bg-surface-container-lowest rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.04)] p-8 border border-outline-variant/15">
         <div class="flex items-center justify-between mb-8">
-          <h3 class="text-2xl font-bold">Reservar Estancia</h3>
+          <h3 class="text-2xl font-bold">Book Your Stay</h3>
           <div class="inline-flex items-center gap-1 px-3 py-1 bg-primary-container text-on-primary-fixed rounded-full">
             <span class="material-symbols-outlined text-[14px]" style='font-variation-settings:"FILL" 1;'>bolt</span>
-            <span class="text-xs font-bold tracking-widest uppercase">Plazas limitadas</span>
+            <span class="text-xs font-bold tracking-widest uppercase">Limited spots</span>
           </div>
         </div>
         <form class="space-y-5">
@@ -163,13 +163,13 @@ tailwind.config = {
           <!-- Fechas -->
           <div class="grid grid-cols-2 gap-4">
             <div class="space-y-2">
-              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Entrada</label>
+              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Check-in</label>
               <input id="fecha-entrada" type="date"
                 min="2026-05-30" max="2026-06-05" value="2026-06-01"
                 class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none transition-all"/>
             </div>
             <div class="space-y-2">
-              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Salida</label>
+              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Check-out</label>
               <input id="fecha-salida" type="date"
                 min="2026-05-31" max="2026-06-06" value="2026-06-04"
                 class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none transition-all"/>
@@ -178,14 +178,14 @@ tailwind.config = {
 
           <!-- Habitaciones -->
           <div class="space-y-2">
-            <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Habitaciones</label>
+            <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Rooms</label>
             <select id="habitaciones"
               class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none appearance-none cursor-pointer">
-              <option value="1">1 habitación</option>
-              <option value="2">2 habitaciones</option>
-              <option value="3">3 habitaciones</option>
-              <option value="4">4 habitaciones</option>
-              <option value="5">5 habitaciones</option>
+              <option value="1">1 room</option>
+              <option value="2">2 rooms</option>
+              <option value="3">3 rooms</option>
+              <option value="4">4 rooms</option>
+              <option value="5">5 rooms</option>
             </select>
           </div>
 
@@ -194,21 +194,21 @@ tailwind.config = {
 
             <!-- Nombre — full width -->
             <div class="space-y-2">
-              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Nombre Completo</label>
-              <input id="nombre" type="text" placeholder="Tu nombre completo"
+              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Full Name</label>
+              <input id="nombre" type="text" placeholder="Your full name"
                 class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none"/>
             </div>
 
             <!-- Email — full width -->
             <div class="space-y-2">
               <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Email</label>
-              <input id="email" type="email" placeholder="tu@email.com"
+              <input id="email" type="email" placeholder="your@email.com"
                 class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-4 px-4 font-semibold focus:border-primary focus:ring-0 outline-none"/>
             </div>
 
             <!-- Teléfono — full width con prefijo -->
             <div class="space-y-2">
-              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Teléfono</label>
+              <label class="block text-[10px] font-bold tracking-widest text-outline uppercase">Phone</label>
               <div class="flex gap-0">
                 <div class="relative" style="width:140px; flex-shrink:0;">
                   <input id="phone-prefix-search" type="text" placeholder="🇪🇸 ES"
@@ -282,7 +282,7 @@ tailwind.config = {
           <!-- Resumen precio -->
           <div class="bg-surface-container py-6 px-6 rounded-xl space-y-3">
             <div class="flex justify-between text-sm text-on-surface-variant">
-              <span><span id="calc-noches">3</span> noches × <span id="calc-hab">1</span> hab × €249/noche</span>
+              <span><span id="calc-noches">3</span> nights × <span id="calc-hab">1</span> rm × €249/night</span>
               <span class="font-bold text-on-surface" id="calc-precio">€747</span>
             </div>
             <div class="pt-3 border-t border-black/10 flex justify-between items-baseline">
@@ -307,33 +307,33 @@ tailwind.config = {
               cursor: pointer;
               line-height: 1.4;
             ">
-              He leído y acepto los
+              I have read and accept the
               <a href="terminos.html" target="_blank" style="color:#4e6300; text-decoration:underline; font-weight:600;">
-                Términos y Condiciones
+                Terms & Conditions
               </a>
-              y la
+              and the
               <a href="privacidad.html" target="_blank" style="color:#4e6300; text-decoration:underline; font-weight:600;">
-                Política de Privacidad
+                Privacy Policy
               </a>.
-              Entiendo que la reserva es no reembolsable.
+              I understand that the booking is non-refundable.
             </label>
           </div>
 
           <!-- CTA -->
           <button id="btn-reservar" type="button"
             class="w-full bg-primary-container text-on-primary-fixed hover:opacity-90 transition-all py-5 rounded-xl font-black text-lg shadow-[0_8px_24px_rgba(212,250,97,0.3)]">
-            Reservar ahora
+            Book Now
           </button>
 
           <!-- Trust markers -->
           <div class="flex items-center gap-4 pt-2">
             <div class="flex items-center gap-1.5">
               <span class="material-symbols-outlined text-primary text-[16px]" style='font-variation-settings:"FILL" 1;'>lock</span>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Pago seguro · Stripe</span>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Secure payment · Stripe</span>
             </div>
             <div class="flex items-center gap-1.5">
               <span class="material-symbols-outlined text-primary text-[16px]" style='font-variation-settings:"FILL" 1;'>check_circle</span>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Confirmación inmediata</span>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Instant confirmation</span>
             </div>
           </div>
 
@@ -349,11 +349,11 @@ tailwind.config = {
   <div class="flex flex-col items-center gap-4 px-8 text-center max-w-7xl mx-auto">
     <img src="assets/logo-white.png" alt="BlockTravel" style="height:24px">
     <p class="text-gray-400 text-xs tracking-wide uppercase">
-      © 2026 BlockTravel Agency · info@blocktravelagency.com · Pago seguro con Stripe
+      © 2026 BlockTravel Agency · info@blocktravelagency.com · Secure payments via Stripe
     </p>
     <div class="flex gap-6 flex-wrap justify-center">
-      <a href="privacidad.html" class="text-gray-400 text-xs tracking-wide uppercase hover:text-gray-300 transition-colors">Política de Privacidad</a>
-      <a href="terminos.html" class="text-gray-400 text-xs tracking-wide uppercase hover:text-gray-300 transition-colors">Términos y Condiciones</a>
+      <a href="privacidad.html" class="text-gray-400 text-xs tracking-wide uppercase hover:text-gray-300 transition-colors">Privacy Policy</a>
+      <a href="terminos.html" class="text-gray-400 text-xs tracking-wide uppercase hover:text-gray-300 transition-colors">Terms & Conditions</a>
     </div>
   </div>
 </footer>
@@ -398,10 +398,10 @@ document.addEventListener('DOMContentLoaded', function() {
   flex-wrap: wrap;
 ">
   <p style="margin:0; max-width:700px; line-height:1.5;">
-    Usamos cookies propias y de terceros (Meta Pixel, Stripe) para mejorar tu experiencia
-    y mostrarte publicidad relevante. Puedes aceptarlas o rechazarlas.
+    We use first and third-party cookies (Meta Pixel, Stripe) to improve your experience
+    and show you relevant ads. You can accept or decline them.
     <a href="privacidad.html" style="color:#DDFE7E; text-decoration:underline;">
-      Más información
+      Learn more
     </a>
   </p>
   <div style="display:flex; gap:0.75rem; flex-shrink:0;">
@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function() {
       font-size: 0.82rem;
       cursor: pointer;
       font-family: inherit;
-    ">Rechazar</button>
+    ">Decline</button>
     <button onclick="aceptarCookies()" style="
       background: #DDFE7E;
       border: none;
@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
-    ">Aceptar</button>
+    ">Accept</button>
   </div>
 </div>
 
@@ -464,10 +464,10 @@ if (localStorage.getItem('cookies_consent')) {
     box-shadow: 0 24px 60px rgba(0,0,0,0.15);
   ">
     <h3 style="font-size:1.3rem; font-weight:900; color:#262328; margin-bottom:0.5rem;">
-      ¿Cómo deseas pagar?
+      How would you like to pay?
     </h3>
     <p style="font-size:0.82rem; color:#5b5b5b; margin-bottom:2rem; line-height:1.5;">
-      Selecciona tu método de pago preferido para completar la reserva.
+      Select your preferred payment method to complete your booking.
     </p>
 
     <div style="display:flex; flex-direction:column; gap:0.75rem;">
@@ -489,7 +489,7 @@ if (localStorage.getItem('cookies_consent')) {
         gap: 0.5rem;
         transition: opacity 0.2s;
       " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-        💳 Pagar con tarjeta
+        💳 Pay by card
       </button>
 
       <!-- CRYPTO -->
@@ -509,7 +509,7 @@ if (localStorage.getItem('cookies_consent')) {
         gap: 0.5rem;
         transition: opacity 0.2s;
       " onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
-        ₿ Pagar con criptomonedas
+        ₿ Pay with crypto
       </button>
 
       <!-- CANCELAR -->
@@ -523,7 +523,7 @@ if (localStorage.getItem('cookies_consent')) {
         font-family: inherit;
         text-decoration: underline;
       ">
-        Cancelar
+        Cancel
       </button>
     </div>
   </div>
