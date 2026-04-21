@@ -4,7 +4,7 @@
 // ============================================================
 
 const CHECKOUT_API = 'https://plain-sea-6b2d.blocktravelagency.workers.dev';
-var PRECIO_POR_NOCHE = 249;
+var PRECIO_POR_NOCHE = 219;
 
 // --- Calculador ---
 function calcularNoches(entrada, salida) {

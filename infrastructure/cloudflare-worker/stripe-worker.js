@@ -42,7 +42,7 @@ async function handleRequest(request) {
         'mode': 'payment',
         'customer_email': email,
         'line_items[0][price_data][currency]': 'eur',
-        'line_items[0][price_data][unit_amount]': '24900',
+        'line_items[0][price_data][unit_amount]': '21900',
         'line_items[0][price_data][product_data][name]': 'Hotel Istanbul Blockchain Week 2026',
         'line_items[0][price_data][product_data][description]': `${noches} noche(s) x ${habitaciones} habitacion(es) — ${fecha_entrada} al ${fecha_salida}`,
         'line_items[0][quantity]': String(cantidad),
@@ -80,7 +80,7 @@ async function handleRequest(request) {
           fecha_salida: fecha_salida,
           noches: noches,
           habitaciones: habitaciones,
-          total: noches * habitaciones * 249,
+          total: noches * habitaciones * 219,
           evento: 'istanbul',
           timestamp: new Date().toISOString()
         })
