@@ -67,28 +67,6 @@ async function handleRequest(request) {
       )
     }
 
-    // Capturar lead en Google Sheets via n8n (fire and forget)
-    try {
-      await fetch('https://landinghoteles-n8n.hqsa3i.easypanel.host/webhook/bta-istanbul-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nombre: nombre,
-          email: email,
-          telefono: telefono || '',
-          fecha_entrada: fecha_entrada,
-          fecha_salida: fecha_salida,
-          noches: noches,
-          habitaciones: habitaciones,
-          total: noches * habitaciones * 219,
-          evento: 'istanbul',
-          timestamp: new Date().toISOString()
-        })
-      });
-    } catch(e) {
-      // Silencioso — no interrumpir el flujo de pago
-    }
-
     return new Response(
       JSON.stringify({ checkout_url: session.url }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
