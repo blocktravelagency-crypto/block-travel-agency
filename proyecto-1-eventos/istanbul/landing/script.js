@@ -118,6 +118,7 @@ async function handleCheckout() {
     var data = await response.json();
 
     if (data.checkout_url) {
+      sessionStorage.setItem('purchase_value', String(calc.total));
       window.location.href = data.checkout_url;
     } else {
       throw new Error(data.error || 'Error al crear la sesi\u00F3n de pago');

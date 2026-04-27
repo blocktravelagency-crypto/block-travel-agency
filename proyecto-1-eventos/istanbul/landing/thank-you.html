@@ -29,7 +29,9 @@
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1272242170945366');
   fbq('track', 'PageView');
-  fbq('track', 'Purchase', {value: 747.00, currency: 'EUR'});
+  const purchaseValue = sessionStorage.getItem('purchase_value') || '0';
+  fbq('track', 'Purchase', { value: parseFloat(purchaseValue), currency: 'EUR' });
+  sessionStorage.removeItem('purchase_value');
   </script>
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=1272242170945366&ev=PageView&noscript=1"
